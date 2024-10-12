@@ -805,7 +805,8 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
                 submodel = _generics.create_generic_submodel(model_name, origin, args, params)
 
                 # Update cache
-                _generics.set_cached_generic_type(cls, typevar_values, submodel, origin, args)
+                if len(_generics.recursively_defined_type_refs()) == 1:
+                    _generics.set_cached_generic_type(cls, typevar_values, submodel, origin, args)
 
         return submodel
 
