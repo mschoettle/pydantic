@@ -12,7 +12,7 @@ Pydantic
 
 [![license](https://img.shields.io/github/license/pydantic/pydantic.svg)](https://github.com/pydantic/pydantic/blob/main/LICENSE)
 
-Documentation for development version: [2f3e1ac](https://github.com/pydantic/pydantic/commit/2f3e1ac12b86f57a401a9421bb15747395f56cdf).
+Documentation for development version: [b9fb3f1](https://github.com/pydantic/pydantic/commit/b9fb3f110d6653653fb48a44430e7d2fca886ae9).
 
 Pydantic is the most widely used data validation library for Python.
 
@@ -271,6 +271,120 @@ For a more comprehensive list of open-source projects using Pydantic see the
 [list of dependents on github](https://github.com/pydantic/pydantic/network/dependents), or you can find some awesome projects using Pydantic in [awesome-pydantic](https://github.com/Kludex/awesome-pydantic).
 
 
+
+v2.11.0b1 (2025-03-06)
+----------------------
+
+ [GitHub release](https://github.com/pydantic/pydantic/releases/tag/v2.11.0b1)
+
+### What's Changed
+
+#### Packaging
+
+* Add a `check_pydantic_core_version()` function by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11324
+* Remove `greenlet` development dependency by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11351
+* Use the `typing-inspection` library by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11479
+* Bump `pydantic-core` to `v2.31.1` by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11526
+
+#### New Features
+
+* Support unsubstituted type variables with both a default and a bound or constraints by [@FyZzyss](https://github.com/FyZzyss) in https://github.com/pydantic/pydantic/pull/10789
+* Add a `default_factory_takes_validated_data` property to `FieldInfo` by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11034
+* Raise a better error when a generic alias is used inside `type[]` by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11088
+* Properly support PEP 695 generics syntax by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11189
+* Properly support type variable defaults by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11332
+* Add support for validating v6, v7, v8 UUIDs by [@astei](https://github.com/astei) in https://github.com/pydantic/pydantic/pull/11436
+* Improve alias configuration APIs by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11468
+
+#### Changes
+
+* Rework `create_model` field definitions format by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11032
+* Raise a deprecation warning when a field is annotated as final with a default value by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11168
+* Deprecate accessing `model_fields` and `model_computed_fields` on instances by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11169
+* **Breaking Change:** Move core schema generation logic for path types inside the `GenerateSchema` class by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/10846
+* Remove Python 3.8 Support by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11258
+* Optimize calls to `get_type_ref` by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/10863
+* Disable `pydantic-core` core schema validation by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11271
+
+#### Performance
+
+* Only evaluate `FieldInfo` annotations if required during schema building by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/10769
+* Improve `__setattr__` performance of Pydantic models by caching setter functions by [@MarkusSintonen](https://github.com/MarkusSintonen) in https://github.com/pydantic/pydantic/pull/10868
+* Improve annotation application performance by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11186
+* Improve performance of `_typing_extra` module by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11255
+* Refactor and optimize schema cleaning logic by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11244
+* Create a single dictionary when creating a `CoreConfig` instance by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11384
+* Bump `pydantic-core` and thus use `SchemaValidator` and `SchemaSerializer` caching by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11402
+* Reuse cached core schemas for parametrized generic Pydantic models by [@MarkusSintonen](https://github.com/MarkusSintonen) in https://github.com/pydantic/pydantic/pull/11434
+
+#### Fixes
+
+* Improve `TypeAdapter` instance repr by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/10872
+* Use the correct frame when instantiating a parametrized `TypeAdapter` by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/10893
+* Infer final fields with a default value as class variables in the mypy plugin by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11121
+* Recursively unpack `Literal` values if using PEP 695 type aliases by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11114
+* Override `__subclasscheck__` on `ModelMetaclass` to avoid memory leak and performance issues by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11116
+* Remove unused `_extract_get_pydantic_json_schema()` parameter by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11155
+* Improve discriminated union error message for invalid union variants by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11161
+* Unpack PEP 695 type aliases if using the `Annotated` form by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11109
+* Add missing stacklevel in `deprecated_instance_property` warning by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11200
+* Copy `WithJsonSchema` schema to avoid sharing mutated data by [@thejcannon](https://github.com/thejcannon) in https://github.com/pydantic/pydantic/pull/11014
+* Do not cache parametrized models when in the process of parametrizing another model by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/10704
+* Add discriminated union related metadata entries to the `CoreMetadata` definition by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11216
+* Consolidate schema definitions logic in the `_Definitions` class by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11208
+* Support initializing root model fields with values of the `root` type in the mypy plugin by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11212
+* Fix various issues with dataclasses and `use_attribute_docstrings` by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11246
+* Only compute normalized decimal places if necessary in `decimal_places_validator` by [@misrasaurabh1](https://github.com/misrasaurabh1) in https://github.com/pydantic/pydantic/pull/11281
+* Add support for `validation_alias` in the mypy plugin by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11295
+* Fix JSON Schema reference collection with `"examples"` keys by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11305
+* Do not transform model serializer functions as class methods in the mypy plugin by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11298
+* Simplify `GenerateJsonSchema.literal_schema()` implementation by [@misrasaurabh1](https://github.com/misrasaurabh1) in https://github.com/pydantic/pydantic/pull/11321
+* Add additional allowed schemes for `ClickHouseDsn` by [@Maze21127](https://github.com/Maze21127) in https://github.com/pydantic/pydantic/pull/11319
+* Coerce decimal constraints to `Decimal` instances by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11350
+* Use the correct JSON Schema mode when handling function schemas by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11367
+* Improve exception message when encountering recursion errors during type evaluation by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11356
+* Always include `additionalProperties: True` for arbitrary dictionary schemas by [@austinyu](https://github.com/austinyu) in https://github.com/pydantic/pydantic/pull/11392
+* Expose `fallback` parameter in serialization methods by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11398
+* Fix path serialization behavior by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11416
+* Do not reuse validators and serializers during model rebuild by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11429
+* Collect model fields when rebuilding a model by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11388
+* Allow cached properties to be altered on frozen models by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11432
+* Fix tuple serialization for `Sequence` types by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11435
+* Fix: do not check for `__get_validators__` on classes where `__get_pydantic_core_schema__` is also defined by [@tlambert03](https://github.com/tlambert03) in https://github.com/pydantic/pydantic/pull/11444
+* Allow callable instances to be used as serializers by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11451
+* Improve error thrown when overriding field with a property by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11459
+* Fix JSON Schema generation with referenceable core schemas holding JSON metadata by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11475
+* Support strict specification on union member types by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11481
+* Implicitly set `validate_by_name` to `True` when `validate_by_alias` is `False` by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic/pull/11503
+* Change type of `Any` when synthesizing `BaseSettings.__init__` signature in the mypy plugin by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11497
+* Support type variable defaults referencing other type variables by [@Viicos](https://github.com/Viicos) in https://github.com/pydantic/pydantic/pull/11520
+* Fix `ValueError` on year zero by [@davidhewitt](https://github.com/davidhewitt) in https://github.com/pydantic/pydantic-core/pull/1583
+* `dataclass` `InitVar` shouldn't be required on serialization by [@sydney-runkle](https://github.com/sydney-runkle) in https://github.com/pydantic/pydantic-core/pull/1602
+
+New Contributors
+----------------
+
+* [@FyZzyss](https://github.com/FyZzyss) made their first contribution in https://github.com/pydantic/pydantic/pull/10789
+* [@tamird](https://github.com/tamird) made their first contribution in https://github.com/pydantic/pydantic/pull/10948
+* [@felixxm](https://github.com/felixxm) made their first contribution in https://github.com/pydantic/pydantic/pull/11077
+* [@alexprabhat99](https://github.com/alexprabhat99) made their first contribution in https://github.com/pydantic/pydantic/pull/11082
+* [@Kharianne](https://github.com/Kharianne) made their first contribution in https://github.com/pydantic/pydantic/pull/11111
+* [@mdaffad](https://github.com/mdaffad) made their first contribution in https://github.com/pydantic/pydantic/pull/11177
+* [@thejcannon](https://github.com/thejcannon) made their first contribution in https://github.com/pydantic/pydantic/pull/11014
+* [@thomasfrimannkoren](https://github.com/thomasfrimannkoren) made their first contribution in https://github.com/pydantic/pydantic/pull/11251
+* [@usernameMAI](https://github.com/usernameMAI) made their first contribution in https://github.com/pydantic/pydantic/pull/11275
+* [@ananiavito](https://github.com/ananiavito) made their first contribution in https://github.com/pydantic/pydantic/pull/11302
+* [@pawamoy](https://github.com/pawamoy) made their first contribution in https://github.com/pydantic/pydantic/pull/11311
+* [@Maze21127](https://github.com/Maze21127) made their first contribution in https://github.com/pydantic/pydantic/pull/11319
+* [@kauabh](https://github.com/kauabh) made their first contribution in https://github.com/pydantic/pydantic/pull/11369
+* [@jaceklaskowski](https://github.com/jaceklaskowski) made their first contribution in https://github.com/pydantic/pydantic/pull/11353
+* [@tmpbeing](https://github.com/tmpbeing) made their first contribution in https://github.com/pydantic/pydantic/pull/11375
+* [@petyosi](https://github.com/petyosi) made their first contribution in https://github.com/pydantic/pydantic/pull/11405
+* [@austinyu](https://github.com/austinyu) made their first contribution in https://github.com/pydantic/pydantic/pull/11392
+* [@mikeedjones](https://github.com/mikeedjones) made their first contribution in https://github.com/pydantic/pydantic/pull/11402
+* [@astei](https://github.com/astei) made their first contribution in https://github.com/pydantic/pydantic/pull/11436
+* [@dsayling](https://github.com/dsayling) made their first contribution in https://github.com/pydantic/pydantic/pull/11522
+* [@sobolevn](https://github.com/sobolevn) made their first contribution in https://github.com/pydantic/pydantic-core/pull/1645
 
 v2.11.0a2 (2025-02-10)
 ----------------------
@@ -4195,7 +4309,7 @@ dataclasses without having to subclass `BaseModel`. Pydantic V2 introduces the f
   + `post_init_call`
 * The following config settings have been renamed:
   
-  + `allow_population_by_field_name` → `populate_by_name`
+  + `allow_population_by_field_name` → `populate_by_name` (or `validate_by_name` starting in v2.11)
   + `anystr_lower` → `str_to_lower`
   + `anystr_strip_whitespace` → `str_strip_whitespace`
   + `anystr_upper` → `str_to_upper`
@@ -5155,10 +5269,6 @@ These are the current maintainers of the Pydantic repository. Feel free to tag u
 
 @hramezani](https://github.com/hramezani)
 
-[![](https://avatars.githubusercontent.com/u/35119617?u=540f30c937a6450812628b9592a1dfe91bbe148e&v=4)
-
-@dmontagu](https://github.com/dmontagu)
-
 [![](https://avatars.githubusercontent.com/u/1755071?u=612704256e38d6ac9cbed24f10e4b6ac2da74ecb&v=4)
 
 @adriangb](https://github.com/adriangb)
@@ -5167,32 +5277,36 @@ These are the current maintainers of the Pydantic repository. Feel free to tag u
 
 @Viicos](https://github.com/Viicos)
 
+[![](https://avatars.githubusercontent.com/u/35119617?u=540f30c937a6450812628b9592a1dfe91bbe148e&v=4)
+
+@dmontagu](https://github.com/dmontagu)
+
+[![](https://avatars.githubusercontent.com/u/1939362?u=b4b48981c3a097daaad16c4c5417aa7a3e5e32d9&v=4)
+
+@davidhewitt](https://github.com/davidhewitt)
+
 [![](https://avatars.githubusercontent.com/u/7353520?u=df8a3f06ba8f55ae1967a3e2d5ed882903a4e330&v=4)
 
 @Kludex](https://github.com/Kludex)
-
-[![](https://avatars.githubusercontent.com/u/4039449?u=42eb3b833047c8c4b4f647a031eaef148c16d93f&v=4)
-
-@samuelcolvin](https://github.com/samuelcolvin)
 
 [![](https://avatars.githubusercontent.com/u/54324534?u=3a4ffd00a8270b607922250d3a2d9c9af38b9cf9&v=4)
 
 @sydney-runkle](https://github.com/sydney-runkle)
 
+[![](https://avatars.githubusercontent.com/u/4039449?u=42eb3b833047c8c4b4f647a031eaef148c16d93f&v=4)
+
+@samuelcolvin](https://github.com/samuelcolvin)
+
 [![](https://avatars.githubusercontent.com/u/3627481?u=9bb2e0cf1c5ef3d0609d2e639a135b7b4ca8b463&v=4)
 
 @alexmojaki](https://github.com/alexmojaki)
-
-[![](https://avatars.githubusercontent.com/u/1939362?u=b4b48981c3a097daaad16c4c5417aa7a3e5e32d9&v=4)
-
-@davidhewitt](https://github.com/davidhewitt)
 
 Experts
 -------
 
 These are the users that have helped others the most with questions in GitHub through *all time*.
 
-[![](https://avatars.githubusercontent.com/u/18406791?u=20a4953f7d7e9d49d054b81e1582b08e87b2125f&v=4)
+[![](https://avatars.githubusercontent.com/u/18406791?u=4853940cf5eeffb5bbb9ba06ad862f28bc68d69e&v=4)
 
 @PrettyWood](https://github.com/PrettyWood)
 Questions replied: 143
@@ -5200,7 +5314,7 @@ Questions replied: 143
 [![](https://avatars.githubusercontent.com/u/32038156?u=a27b65a9ec3420586a827a0facccbb8b6df1ffb3&v=4)
 
 @uriyyo](https://github.com/uriyyo)
-Questions replied: 95
+Questions replied: 96
 
 [![](https://avatars.githubusercontent.com/u/2184855?u=5670768b7efda993c4887d91df3cf330dc7bc9de&v=4)
 
@@ -5226,17 +5340,12 @@ Questions replied: None
 
 These are the users that have helped others the most with questions in GitHub during the last month.
 
-[![](https://avatars.githubusercontent.com/u/48211033?u=e9c1dd6ff60473e8f35179fd91be02ea8af569ef&v=4)
-
-@janas-adam](https://github.com/janas-adam)
-Questions replied: 6
-
 Top contributors
 ----------------
 
 These are the users that have created the most pull requests that have been *merged*.
 
-[![](https://avatars.githubusercontent.com/u/18406791?u=20a4953f7d7e9d49d054b81e1582b08e87b2125f&v=4)
+[![](https://avatars.githubusercontent.com/u/18406791?u=4853940cf5eeffb5bbb9ba06ad862f28bc68d69e&v=4)
 
 @PrettyWood](https://github.com/PrettyWood)
 Contributions: 122
@@ -5276,6 +5385,11 @@ Contributions: 19
 @Gr1N](https://github.com/Gr1N)
 Contributions: 17
 
+[![](https://avatars.githubusercontent.com/u/1271289?u=b83b0a82b2c95990d93cefbeb8f548d9f2f090c2&v=4)
+
+@misrasaurabh1](https://github.com/misrasaurabh1)
+Contributions: 16
+
 [![](https://avatars.githubusercontent.com/u/32038156?u=a27b65a9ec3420586a827a0facccbb8b6df1ffb3&v=4)
 
 @uriyyo](https://github.com/uriyyo)
@@ -5289,11 +5403,6 @@ Contributions: 12
 [![](https://avatars.githubusercontent.com/u/52716203?u=d7062cbc6eb7671d5dc9cc0e32a24ae335e0f225&v=4)
 
 @yezz123](https://github.com/yezz123)
-Contributions: 12
-
-[![](https://avatars.githubusercontent.com/u/1271289?u=b83b0a82b2c95990d93cefbeb8f548d9f2f090c2&v=4)
-
-@misrasaurabh1](https://github.com/misrasaurabh1)
 Contributions: 12
 
 [![](https://avatars.githubusercontent.com/u/89458301?u=75f53e971fcba3ff61836c389505a420bddd865c&v=4)
@@ -5316,7 +5425,7 @@ Contributions: 9
 @cdce8p](https://github.com/cdce8p)
 Contributions: 9
 
-[![](https://avatars.githubusercontent.com/u/19784933?u=2f45a312b73e7fb29f3b6f8676e5be6f7220da25&v=4)
+[![](https://avatars.githubusercontent.com/u/19784933?v=4)
 
 @aminalaee](https://github.com/aminalaee)
 Contributions: 8
@@ -5336,6 +5445,11 @@ Contributions: 7
 @daviskirk](https://github.com/daviskirk)
 Contributions: 7
 
+[![](https://avatars.githubusercontent.com/u/1609449?u=922abf0524b47739b37095e553c99488814b05db&v=4)
+
+@tlambert03](https://github.com/tlambert03)
+Contributions: 7
+
 [![](https://avatars.githubusercontent.com/u/1769841?u=44e83d7974f0ab5c431340f1669d98f781594980&v=4)
 
 @dgasmith](https://github.com/dgasmith)
@@ -5344,11 +5458,6 @@ Contributions: 6
 [![](https://avatars.githubusercontent.com/u/202696?v=4)
 
 @Atheuz](https://github.com/Atheuz)
-Contributions: 6
-
-[![](https://avatars.githubusercontent.com/u/1609449?u=922abf0524b47739b37095e553c99488814b05db&v=4)
-
-@tlambert03](https://github.com/tlambert03)
 Contributions: 6
 
 [![](https://avatars.githubusercontent.com/u/16639270?u=faa71bcfb3273a32cd81711a56998e115bca7fcc&v=4)
@@ -5391,6 +5500,11 @@ Contributions: 4
 @commonism](https://github.com/commonism)
 Contributions: 4
 
+[![](https://avatars.githubusercontent.com/u/12939780?v=4)
+
+@MarkusSintonen](https://github.com/MarkusSintonen)
+Contributions: 4
+
 [![](https://avatars.githubusercontent.com/u/59469646?u=86d6a20768cc4cc65622eafd86672147321bd8f8&v=4)
 
 @JensHeinrich](https://github.com/JensHeinrich)
@@ -5416,12 +5530,17 @@ Contributions: 4
 @dAIsySHEng1](https://github.com/dAIsySHEng1)
 Contributions: 4
 
+[![](https://avatars.githubusercontent.com/u/9328433?u=8546519cb04223cd878285d72c27850b5f3f0882&v=4)
+
+@mschoettle](https://github.com/mschoettle)
+Contributions: 4
+
 Top Reviewers
 -------------
 
 These are the users that have reviewed the most Pull Requests from others, assisting with code quality, documentation, bug fixes, feature requests, etc.
 
-[![](https://avatars.githubusercontent.com/u/18406791?u=20a4953f7d7e9d49d054b81e1582b08e87b2125f&v=4)
+[![](https://avatars.githubusercontent.com/u/18406791?u=4853940cf5eeffb5bbb9ba06ad862f28bc68d69e&v=4)
 
 @PrettyWood](https://github.com/PrettyWood)
 Reviews: 211
@@ -5436,15 +5555,15 @@ Reviews: 103
 @tpdorsey](https://github.com/tpdorsey)
 Reviews: 77
 
+[![](https://avatars.githubusercontent.com/in/718456?v=4)
+
+@hyperlint-ai](https://github.com/apps/hyperlint-ai)
+Reviews: 56
+
 [![](https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4)
 
 @tiangolo](https://github.com/tiangolo)
 Reviews: 44
-
-[![](https://avatars.githubusercontent.com/in/718456?v=4)
-
-@hyperlint-ai](https://github.com/apps/hyperlint-ai)
-Reviews: 41
 
 [![](https://avatars.githubusercontent.com/u/36469655?u=f67d8fa6d67d35d2f5ebd5b15e24efeb41036fd3&v=4)
 
@@ -5464,7 +5583,7 @@ Reviews: 17
 [![](https://avatars.githubusercontent.com/u/12939780?v=4)
 
 @MarkusSintonen](https://github.com/MarkusSintonen)
-Reviews: 15
+Reviews: 16
 
 [![](https://avatars.githubusercontent.com/u/40807730?u=b417e3cea56fd0f67983006108f6a1a83d4652a0&v=4)
 
@@ -5536,7 +5655,7 @@ Reviews: 5
 @nix010](https://github.com/nix010)
 Reviews: 5
 
-[![](https://avatars.githubusercontent.com/u/413772?u=64b77b6aa405c68a9c6bcf45f84257c66eea5f32&v=4)
+[![](https://avatars.githubusercontent.com/u/413772?v=4)
 
 @graingert](https://github.com/graingert)
 Reviews: 4
@@ -7119,7 +7238,7 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
         include: IncEx | None = None,
         exclude: IncEx | None = None,
         context: Any | None = None,
-        by_alias: bool = False,
+        by_alias: bool | None = None,
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
@@ -7177,7 +7296,7 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
         include: IncEx | None = None,
         exclude: IncEx | None = None,
         context: Any | None = None,
-        by_alias: bool = False,
+        by_alias: bool | None = None,
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
         exclude_none: bool = False,
@@ -7366,6 +7485,8 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
         strict: bool | None = None,
         from_attributes: bool | None = None,
         context: Any | None = None,
+        by_alias: bool | None = None,
+        by_name: bool | None = None,
     ) -> Self:
         """Validate a pydantic model instance.
 
@@ -7374,6 +7495,8 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
             strict: Whether to enforce types strictly.
             from_attributes: Whether to extract data from object attributes.
             context: Additional context to pass to the validator.
+            by_alias: Whether to use the field's alias when validating against the provided input data.
+            by_name: Whether to use the field's name when validating against the provided input data.
 
         Raises:
             ValidationError: If the object could not be validated.
@@ -7383,8 +7506,15 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
         """
         # `__tracebackhide__` tells pytest and some other tools to omit this function from tracebacks
         __tracebackhide__ = True
+
+        if by_alias is False and by_name is not True:
+            raise PydanticUserError(
+                'At least one of `by_alias` or `by_name` must be set to True.',
+                code='validate-by-alias-and-name-false',
+            )
+
         return cls.__pydantic_validator__.validate_python(
-            obj, strict=strict, from_attributes=from_attributes, context=context
+            obj, strict=strict, from_attributes=from_attributes, context=context, by_alias=by_alias, by_name=by_name
         )
 
     @classmethod
@@ -7394,6 +7524,8 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
         *,
         strict: bool | None = None,
         context: Any | None = None,
+        by_alias: bool | None = None,
+        by_name: bool | None = None,
     ) -> Self:
         """!!! abstract "Usage Documentation"
             [JSON Parsing](../concepts/json.md#json-parsing)
@@ -7404,6 +7536,8 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
             json_data: The JSON data to validate.
             strict: Whether to enforce types strictly.
             context: Extra variables to pass to the validator.
+            by_alias: Whether to use the field's alias when validating against the provided input data.
+            by_name: Whether to use the field's name when validating against the provided input data.
 
         Returns:
             The validated Pydantic model.
@@ -7413,7 +7547,16 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
         """
         # `__tracebackhide__` tells pytest and some other tools to omit this function from tracebacks
         __tracebackhide__ = True
-        return cls.__pydantic_validator__.validate_json(json_data, strict=strict, context=context)
+
+        if by_alias is False and by_name is not True:
+            raise PydanticUserError(
+                'At least one of `by_alias` or `by_name` must be set to True.',
+                code='validate-by-alias-and-name-false',
+            )
+
+        return cls.__pydantic_validator__.validate_json(
+            json_data, strict=strict, context=context, by_alias=by_alias, by_name=by_name
+        )
 
     @classmethod
     def model_validate_strings(
@@ -7422,6 +7565,8 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
         *,
         strict: bool | None = None,
         context: Any | None = None,
+        by_alias: bool | None = None,
+        by_name: bool | None = None,
     ) -> Self:
         """Validate the given object with string data against the Pydantic model.
 
@@ -7429,13 +7574,24 @@ class BaseModel(metaclass=_model_construction.ModelMetaclass):
             obj: The object containing string data to validate.
             strict: Whether to enforce types strictly.
             context: Extra variables to pass to the validator.
+            by_alias: Whether to use the field's alias when validating against the provided input data.
+            by_name: Whether to use the field's name when validating against the provided input data.
 
         Returns:
             The validated Pydantic model.
         """
         # `__tracebackhide__` tells pytest and some other tools to omit this function from tracebacks
         __tracebackhide__ = True
-        return cls.__pydantic_validator__.validate_strings(obj, strict=strict, context=context)
+
+        if by_alias is False and by_name is not True:
+            raise PydanticUserError(
+                'At least one of `by_alias` or `by_name` must be set to True.',
+                code='validate-by-alias-and-name-false',
+            )
+
+        return cls.__pydantic_validator__.validate_strings(
+            obj, strict=strict, context=context, by_alias=by_alias, by_name=by_name
+        )
 
     @classmethod
     def __get_pydantic_core_schema__(cls, source: type[BaseModel], handler: GetCoreSchemaHandler, /) -> CoreSchema:
@@ -8667,7 +8823,7 @@ model_dump(
     include: IncEx | None = None,
     exclude: IncEx | None = None,
     context: Any | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -8695,7 +8851,7 @@ Parameters:
 | `include` | `IncEx | None` | A set of fields to include in the output. | `None` |
 | `exclude` | `IncEx | None` | A set of fields to exclude from the output. | `None` |
 | `context` | `Any | None` | Additional context to pass to the serializer. | `None` |
-| `by_alias` | `bool` | Whether to use the field's alias in the dictionary key if defined. | `False` |
+| `by_alias` | `bool | None` | Whether to use the field's alias in the dictionary key if defined. | `None` |
 | `exclude_unset` | `bool` | Whether to exclude fields that have not been explicitly set. | `False` |
 | `exclude_defaults` | `bool` | Whether to exclude fields that are set to their default value. | `False` |
 | `exclude_none` | `bool` | Whether to exclude fields that have a value of `None`. | `False` |
@@ -8719,7 +8875,7 @@ def model_dump(
     include: IncEx | None = None,
     exclude: IncEx | None = None,
     context: Any | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -8784,7 +8940,7 @@ model_dump_json(
     include: IncEx | None = None,
     exclude: IncEx | None = None,
     context: Any | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -8812,7 +8968,7 @@ Parameters:
 | `include` | `IncEx | None` | Field(s) to include in the JSON output. | `None` |
 | `exclude` | `IncEx | None` | Field(s) to exclude from the JSON output. | `None` |
 | `context` | `Any | None` | Additional context to pass to the serializer. | `None` |
-| `by_alias` | `bool` | Whether to serialize using field aliases. | `False` |
+| `by_alias` | `bool | None` | Whether to serialize using field aliases. | `None` |
 | `exclude_unset` | `bool` | Whether to exclude fields that have not been explicitly set. | `False` |
 | `exclude_defaults` | `bool` | Whether to exclude fields that are set to their default value. | `False` |
 | `exclude_none` | `bool` | Whether to exclude fields that have a value of `None`. | `False` |
@@ -8836,7 +8992,7 @@ def model_dump_json(
     include: IncEx | None = None,
     exclude: IncEx | None = None,
     context: Any | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -9164,7 +9320,9 @@ model_validate(
     *,
     strict: bool | None = None,
     from_attributes: bool | None = None,
-    context: Any | None = None
+    context: Any | None = None,
+    by_alias: bool | None = None,
+    by_name: bool | None = None
 ) -> Self
 
 ```
@@ -9179,6 +9337,8 @@ Parameters:
 | `strict` | `bool | None` | Whether to enforce types strictly. | `None` |
 | `from_attributes` | `bool | None` | Whether to extract data from object attributes. | `None` |
 | `context` | `Any | None` | Additional context to pass to the validator. | `None` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Raises:
 
@@ -9202,6 +9362,8 @@ def model_validate(
     strict: bool | None = None,
     from_attributes: bool | None = None,
     context: Any | None = None,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> Self:
     """Validate a pydantic model instance.
 
@@ -9210,6 +9372,8 @@ def model_validate(
         strict: Whether to enforce types strictly.
         from_attributes: Whether to extract data from object attributes.
         context: Additional context to pass to the validator.
+        by_alias: Whether to use the field's alias when validating against the provided input data.
+        by_name: Whether to use the field's name when validating against the provided input data.
 
     Raises:
         ValidationError: If the object could not be validated.
@@ -9219,8 +9383,15 @@ def model_validate(
     """
     # `__tracebackhide__` tells pytest and some other tools to omit this function from tracebacks
     __tracebackhide__ = True
+
+    if by_alias is False and by_name is not True:
+        raise PydanticUserError(
+            'At least one of `by_alias` or `by_name` must be set to True.',
+            code='validate-by-alias-and-name-false',
+        )
+
     return cls.__pydantic_validator__.validate_python(
-        obj, strict=strict, from_attributes=from_attributes, context=context
+        obj, strict=strict, from_attributes=from_attributes, context=context, by_alias=by_alias, by_name=by_name
     )
 
 ```
@@ -9235,7 +9406,9 @@ model_validate_json(
     json_data: str | bytes | bytearray,
     *,
     strict: bool | None = None,
-    context: Any | None = None
+    context: Any | None = None,
+    by_alias: bool | None = None,
+    by_name: bool | None = None
 ) -> Self
 
 ```
@@ -9253,6 +9426,8 @@ Parameters:
 | `json_data` | `str | bytes | bytearray` | The JSON data to validate. | *required* |
 | `strict` | `bool | None` | Whether to enforce types strictly. | `None` |
 | `context` | `Any | None` | Extra variables to pass to the validator. | `None` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Returns:
 
@@ -9275,6 +9450,8 @@ def model_validate_json(
     *,
     strict: bool | None = None,
     context: Any | None = None,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> Self:
     """!!! abstract "Usage Documentation"
         [JSON Parsing](../concepts/json.md#json-parsing)
@@ -9285,6 +9462,8 @@ def model_validate_json(
         json_data: The JSON data to validate.
         strict: Whether to enforce types strictly.
         context: Extra variables to pass to the validator.
+        by_alias: Whether to use the field's alias when validating against the provided input data.
+        by_name: Whether to use the field's name when validating against the provided input data.
 
     Returns:
         The validated Pydantic model.
@@ -9294,7 +9473,16 @@ def model_validate_json(
     """
     # `__tracebackhide__` tells pytest and some other tools to omit this function from tracebacks
     __tracebackhide__ = True
-    return cls.__pydantic_validator__.validate_json(json_data, strict=strict, context=context)
+
+    if by_alias is False and by_name is not True:
+        raise PydanticUserError(
+            'At least one of `by_alias` or `by_name` must be set to True.',
+            code='validate-by-alias-and-name-false',
+        )
+
+    return cls.__pydantic_validator__.validate_json(
+        json_data, strict=strict, context=context, by_alias=by_alias, by_name=by_name
+    )
 
 ```
 
@@ -9308,7 +9496,9 @@ model_validate_strings(
     obj: Any,
     *,
     strict: bool | None = None,
-    context: Any | None = None
+    context: Any | None = None,
+    by_alias: bool | None = None,
+    by_name: bool | None = None
 ) -> Self
 
 ```
@@ -9322,6 +9512,8 @@ Parameters:
 | `obj` | `Any` | The object containing string data to validate. | *required* |
 | `strict` | `bool | None` | Whether to enforce types strictly. | `None` |
 | `context` | `Any | None` | Extra variables to pass to the validator. | `None` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Returns:
 
@@ -9338,6 +9530,8 @@ def model_validate_strings(
     *,
     strict: bool | None = None,
     context: Any | None = None,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> Self:
     """Validate the given object with string data against the Pydantic model.
 
@@ -9345,13 +9539,24 @@ def model_validate_strings(
         obj: The object containing string data to validate.
         strict: Whether to enforce types strictly.
         context: Extra variables to pass to the validator.
+        by_alias: Whether to use the field's alias when validating against the provided input data.
+        by_name: Whether to use the field's name when validating against the provided input data.
 
     Returns:
         The validated Pydantic model.
     """
     # `__tracebackhide__` tells pytest and some other tools to omit this function from tracebacks
     __tracebackhide__ = True
-    return cls.__pydantic_validator__.validate_strings(obj, strict=strict, context=context)
+
+    if by_alias is False and by_name is not True:
+        raise PydanticUserError(
+            'At least one of `by_alias` or `by_name` must be set to True.',
+            code='validate-by-alias-and-name-false',
+        )
+
+    return cls.__pydantic_validator__.validate_strings(
+        obj, strict=strict, context=context, by_alias=by_alias, by_name=by_name
+    )
 
 ```
 
@@ -9790,33 +9995,41 @@ populate_by_name: bool
 Whether an aliased field may be populated by its name as given by the model
 attribute, as well as the alias. Defaults to `False`.
 
-Note
+Warning
 
-The name of this configuration setting was changed in **v2.0** from
-`allow_population_by_field_name` to `populate_by_name`.
+`populate_by_name` usage is not recommended in v2.11+ and will be deprecated in v3.
+Instead, you should use the `validate_by_name` configuration setting.
 
- 
+When `validate_by_name=True` and `validate_by_alias=True`, this is strictly equivalent to the
+previous behavior of `populate_by_name=True`.
+
+In v2.11, we also introduced a `validate_by_alias` setting that introduces more fine grained
+control for validation behavior.
+
+Here's how you might go about using the new settings to achieve the same behavior:
+
 ```
 from pydantic import BaseModel, ConfigDict, Field
 
-class User(BaseModel):
-    model_config = ConfigDict(populate_by_name=True)
+class Model(BaseModel):
+    model_config = ConfigDict(validate_by_name=True, validate_by_alias=True)
 
-    name: str = Field(alias='full_name')  # (1)!
-    age: int
+    my_field: str = Field(alias='my_alias')  # (1)!
 
-user = User(full_name='John Doe', age=20)  # (2)!
-print(user)
-#> name='John Doe' age=20
-user = User(name='John Doe', age=20)  # (3)!
-print(user)
-#> name='John Doe' age=20
+m = Model(my_alias='foo')  # (2)!
+print(m)
+#> my_field='foo'
+
+m = Model(my_alias='foo')  # (3)!
+print(m)
+#> my_field='foo'
 
 ```
 
-1. The field `'name'` has an alias `'full_name'`.
-2. The model is populated by the alias `'full_name'`.
-3. The model is populated by the field name `'name'`.
+1. The field `'my_field'` has an alias `'my_alias'`.
+2. The model is populated by the alias `'my_alias'`.
+3. The model is populated by the attribute name `'my_field'`.
+
 
 
 ### use\_enum\_values `instance-attribute`
@@ -10880,6 +11093,135 @@ as the performance difference is minimal if repeated strings are rare.
 
 
 
+### validate\_by\_alias `instance-attribute`
+
+```
+validate_by_alias: bool
+
+```
+
+Whether an aliased field may be populated by its alias. Defaults to `True`.
+
+Note
+
+In v2.11, `validate_by_alias` was introduced in conjunction with `validate_by_name`
+to empower users with more fine grained validation control. In <v2.11, disabling validation by alias was not possible.
+
+Here's an example of disabling validation by alias:
+
+```
+from pydantic import BaseModel, ConfigDict, Field
+
+class Model(BaseModel):
+    model_config = ConfigDict(validate_by_name=True, validate_by_alias=False)
+
+    my_field: str = Field(validation_alias='my_alias')  # (1)!
+
+m = Model(my_field='foo')  # (2)!
+print(m)
+#> my_field='foo'
+
+```
+
+1. The field `'my_field'` has an alias `'my_alias'`.
+2. The model can only be populated by the attribute name `'my_field'`.
+
+Warning
+
+You cannot set both `validate_by_alias` and `validate_by_name` to `False`.
+This would make it impossible to populate an attribute.
+
+See [usage errors](../../errors/usage_errors/#validate-by-alias-and-name-false) for an example.
+
+If you set `validate_by_alias` to `False`, under the hood, Pydantic dynamically sets
+`validate_by_name` to `True` to ensure that validation can still occur.
+
+
+
+
+### validate\_by\_name `instance-attribute`
+
+```
+validate_by_name: bool
+
+```
+
+Whether an aliased field may be populated by its name as given by the model
+attribute. Defaults to `False`.
+
+Note
+
+In v2.0-v2.10, the `populate_by_name` configuration setting was used to specify
+whether or not a field could be populated by its name **and** alias.
+
+In v2.11, `validate_by_name` was introduced in conjunction with `validate_by_alias`
+to empower users with more fine grained validation behavior control.
+
+
+```
+from pydantic import BaseModel, ConfigDict, Field
+
+class Model(BaseModel):
+    model_config = ConfigDict(validate_by_name=True, validate_by_alias=True)
+
+    my_field: str = Field(validation_alias='my_alias')  # (1)!
+
+m = Model(my_alias='foo')  # (2)!
+print(m)
+#> my_field='foo'
+
+m = Model(my_field='foo')  # (3)!
+print(m)
+#> my_field='foo'
+
+```
+
+1. The field `'my_field'` has an alias `'my_alias'`.
+2. The model is populated by the alias `'my_alias'`.
+3. The model is populated by the attribute name `'my_field'`.
+
+Warning
+
+You cannot set both `validate_by_alias` and `validate_by_name` to `False`.
+This would make it impossible to populate an attribute.
+
+See [usage errors](../../errors/usage_errors/#validate-by-alias-and-name-false) for an example.
+
+
+
+
+### serialize\_by\_alias `instance-attribute`
+
+```
+serialize_by_alias: bool
+
+```
+
+Whether an aliased field should be serialized by its alias. Defaults to `False`.
+
+Note: In v2.11, `serialize_by_alias` was introduced to address the
+[popular request](https://github.com/pydantic/pydantic/issues/8379)
+for consistency with alias behavior for validation and serialization settings.
+In v3, the default value is expected to change to `True` for consistency with the validation default.
+
+```
+from pydantic import BaseModel, ConfigDict, Field
+
+class Model(BaseModel):
+    model_config = ConfigDict(serialize_by_alias=True)
+
+    my_field: str = Field(serialization_alias='my_alias')  # (1)!
+
+m = Model(my_field='foo')
+print(m.model_dump())  # (2)!
+#> {'my_alias': 'foo'}
+
+```
+
+1. The field `'my_field'` has an alias `'my_alias'`.
+2. The model is serialized using the alias `'my_alias'` for the `'my_field'` attribute.
+
+
 
 
 
@@ -11817,6 +12159,37 @@ Source code in `pydantic/errors.py`
 ```
 def __init__(self, message: str) -> None:
     super().__init__(message, code='invalid-for-json-schema')
+
+```
+
+
+
+
+
+PydanticForbiddenQualifier
+--------------------------
+
+```
+PydanticForbiddenQualifier(
+    qualifier: Qualifier, annotation: Any
+)
+
+```
+
+Bases: `PydanticUserError`
+
+An error raised if a forbidden type qualifier is found in a type annotation.
+
+Source code in `pydantic/errors.py`
+```
+def __init__(self, qualifier: Qualifier, annotation: Any) -> None:
+    super().__init__(
+        message=(
+            f'The annotation {_repr.display_as_type(annotation)!r} contains the {self._qualifier_repr_map[qualifier]!r} '
+            f'type qualifier, which is invalid in the context it is defined.'
+        ),
+        code=None,
+    )
 
 ```
 
@@ -12957,7 +13330,9 @@ def __init__(self, **kwargs: Unpack[_FieldInfoInputs]) -> None:
 
     self.metadata = self._collect_metadata(kwargs)  # type: ignore
 
-    # Private attributes, used to rebuild FieldInfo instances:
+    # Private attributes:
+    self._qualifiers: set[Qualifier] = set()
+    # Used to rebuild FieldInfo instances:
     self._complete = True
     self._original_annotation: Any = PydanticUndefined
     self._original_assignment: Any = PydanticUndefined
@@ -13047,7 +13422,11 @@ def from_field(default: Any = PydanticUndefined, **kwargs: Unpack[_FromFieldInfo
 ### from\_annotation `staticmethod`
 
 ```
-from_annotation(annotation: type[Any]) -> FieldInfo
+from_annotation(
+    annotation: type[Any],
+    *,
+    _source: AnnotationSource = ANY
+) -> FieldInfo
 
 ```
 
@@ -13094,7 +13473,7 @@ Returns:
 Source code in `pydantic/fields.py`
 ```
 @staticmethod
-def from_annotation(annotation: type[Any]) -> FieldInfo:
+def from_annotation(annotation: type[Any], *, _source: AnnotationSource = AnnotationSource.ANY) -> FieldInfo:
     """Creates a `FieldInfo` instance from a bare annotation.
 
     This function is used internally to create a `FieldInfo` from a bare annotation like this:
@@ -13127,51 +13506,48 @@ def from_annotation(annotation: type[Any]) -> FieldInfo:
     Returns:
         An instance of the field metadata.
     """
-    # 1. Check if the annotation is the `Final` type qualifier:
-    final = _typing_extra.is_finalvar(annotation)
-    if final:
-        if _typing_extra.is_generic_alias(annotation):
-            # 1.1. The annotation is a parametrized `Final`, e.g. `Final[int]`.
-            #      In this case, `annotation` will be `int`:
-            annotation = typing_extensions.get_args(annotation)[0]
+    try:
+        inspected_ann = inspect_annotation(
+            annotation,
+            annotation_source=_source,
+            unpack_type_aliases='skip',
+        )
+    except ForbiddenQualifier as e:
+        raise PydanticForbiddenQualifier(e.qualifier, annotation)
+
+    # TODO check for classvar and error?
+
+    # No assigned value, this happens when using a bare `Final` qualifier (also for other
+    # qualifiers, but they shouldn't appear here). In this case we infer the type as `Any`
+    # because we don't have any assigned value.
+    type_expr: Any = Any if inspected_ann.type is UNKNOWN else inspected_ann.type
+    final = 'final' in inspected_ann.qualifiers
+    metadata = inspected_ann.metadata
+
+    if not metadata:
+        # No metadata, e.g. `field: int`, or `field: Final[str]`:
+        field_info = FieldInfo(annotation=type_expr, frozen=final or None)
+        field_info._qualifiers = inspected_ann.qualifiers
+        return field_info
+
+    # With metadata, e.g. `field: Annotated[int, Field(...), Gt(1)]`:
+    field_info_annotations = [a for a in metadata if isinstance(a, FieldInfo)]
+    field_info = FieldInfo.merge_field_infos(*field_info_annotations, annotation=type_expr)
+
+    new_field_info = copy(field_info)
+    new_field_info.annotation = type_expr
+    new_field_info.frozen = final or field_info.frozen
+    field_metadata: list[Any] = []
+    for a in metadata:
+        if typing_objects.is_deprecated(a):
+            new_field_info.deprecated = a.message
+        elif not isinstance(a, FieldInfo):
+            field_metadata.append(a)
         else:
-            # 1.2. The annotation is a bare `Final`. Use `Any` as a type annotation:
-            return FieldInfo(annotation=Any, frozen=True)  # pyright: ignore[reportArgumentType] (PEP 747)
-
-    # 2. Check if the annotation is an `Annotated` form.
-    #    In this case, `annotation` will be the annotated type:
-    annotation, metadata = _typing_extra.unpack_annotated(annotation)
-
-    # 3. If we have metadata, `annotation` was the annotated type:
-    if metadata:
-        # 3.1. Check if the annotated type is the `Final` type qualifier.
-        #      (i.e. `Annotated[Final[...], ...]`). Note that we only do
-        #      so if `final` isn't `True` already, because we don't want to
-        #      support the invalid `Final[Annotated[Final, ...]]` form.
-        if not final:
-            final = _typing_extra.is_finalvar(annotation)
-            if final and _typing_extra.is_generic_alias(annotation):
-                annotation = typing_extensions.get_args(annotation)[0]
-
-        field_info_annotations = [a for a in metadata if isinstance(a, FieldInfo)]
-        field_info = FieldInfo.merge_field_infos(*field_info_annotations, annotation=annotation)
-        if field_info:
-            new_field_info = copy(field_info)
-            new_field_info.annotation = annotation
-            new_field_info.frozen = final or field_info.frozen
-            field_metadata: list[Any] = []
-            for a in metadata:
-                if _typing_extra.is_deprecated_instance(a):
-                    new_field_info.deprecated = a.message
-                elif not isinstance(a, FieldInfo):
-                    field_metadata.append(a)
-                else:
-                    field_metadata.extend(a.metadata)
-            new_field_info.metadata = field_metadata
-            return new_field_info
-
-    # 4. We don't have metadata:
-    return FieldInfo(annotation=annotation, frozen=final or None)  # pyright: ignore[reportArgumentType] (PEP 747)
+            field_metadata.extend(a.metadata)
+        new_field_info.metadata = field_metadata
+    new_field_info._qualifiers = inspected_ann.qualifiers
+    return new_field_info
 
 ```
 
@@ -13182,7 +13558,10 @@ def from_annotation(annotation: type[Any]) -> FieldInfo:
 
 ```
 from_annotated_attribute(
-    annotation: type[Any], default: Any
+    annotation: type[Any],
+    default: Any,
+    *,
+    _source: AnnotationSource = ANY
 ) -> FieldInfo
 
 ```
@@ -13221,7 +13600,9 @@ Returns:
 Source code in `pydantic/fields.py`
 ```
 @staticmethod
-def from_annotated_attribute(annotation: type[Any], default: Any) -> FieldInfo:
+def from_annotated_attribute(
+    annotation: type[Any], default: Any, *, _source: AnnotationSource = AnnotationSource.ANY
+) -> FieldInfo:
     """Create `FieldInfo` from an annotation with a default value.
 
     This is used in cases like the following:
@@ -13253,59 +13634,73 @@ def from_annotated_attribute(annotation: type[Any], default: Any) -> FieldInfo:
             code='unevaluable-type-annotation',
         )
 
-    final = _typing_extra.is_finalvar(annotation)
-    if final and _typing_extra.is_generic_alias(annotation):
-        annotation = typing_extensions.get_args(annotation)[0]
+    try:
+        inspected_ann = inspect_annotation(
+            annotation,
+            annotation_source=_source,
+            unpack_type_aliases='skip',
+        )
+    except ForbiddenQualifier as e:
+        raise PydanticForbiddenQualifier(e.qualifier, annotation)
+
+    # TODO check for classvar and error?
+
+    # TODO infer from the default, this can be done in v3 once we treat final fields with
+    # a default as proper fields and not class variables:
+    type_expr: Any = Any if inspected_ann.type is UNKNOWN else inspected_ann.type
+    final = 'final' in inspected_ann.qualifiers
+    metadata = inspected_ann.metadata
 
     if isinstance(default, FieldInfo):
-        default.annotation, annotation_metadata = _typing_extra.unpack_annotated(annotation)
-        default.metadata += annotation_metadata
-        default = default.merge_field_infos(
-            *[x for x in annotation_metadata if isinstance(x, FieldInfo)], default, annotation=default.annotation
+        # e.g. `field: int = Field(...)`
+        default.annotation = type_expr
+        default.metadata += metadata
+        merged_default = FieldInfo.merge_field_infos(
+            *[x for x in metadata if isinstance(x, FieldInfo)],
+            default,
+            annotation=default.annotation,
         )
-        default.frozen = final or default.frozen
-        return default
+        merged_default.frozen = final or merged_default.frozen
+        merged_default._qualifiers = inspected_ann.qualifiers
+        return merged_default
 
     if isinstance(default, dataclasses.Field):
-        init_var = False
-        if annotation is dataclasses.InitVar:
-            init_var = True
-            annotation = typing.cast(Any, Any)
-        elif isinstance(annotation, dataclasses.InitVar):
-            init_var = True
-            annotation = annotation.type
-
+        # `collect_dataclass_fields()` passes the dataclass Field as a default.
         pydantic_field = FieldInfo._from_dataclass_field(default)
-        pydantic_field.annotation, annotation_metadata = _typing_extra.unpack_annotated(annotation)
-        pydantic_field.metadata += annotation_metadata
-        pydantic_field = pydantic_field.merge_field_infos(
-            *[x for x in annotation_metadata if isinstance(x, FieldInfo)],
+        pydantic_field.annotation = type_expr
+        pydantic_field.metadata += metadata
+        pydantic_field = FieldInfo.merge_field_infos(
+            *[x for x in metadata if isinstance(x, FieldInfo)],
             pydantic_field,
             annotation=pydantic_field.annotation,
         )
         pydantic_field.frozen = final or pydantic_field.frozen
-        pydantic_field.init_var = init_var
+        pydantic_field.init_var = 'init_var' in inspected_ann.qualifiers
         pydantic_field.init = getattr(default, 'init', None)
         pydantic_field.kw_only = getattr(default, 'kw_only', None)
+        pydantic_field._qualifiers = inspected_ann.qualifiers
         return pydantic_field
 
-    annotation, metadata = _typing_extra.unpack_annotated(annotation)
-
-    if metadata:
-        field_infos = [a for a in metadata if isinstance(a, FieldInfo)]
-        field_info = FieldInfo.merge_field_infos(*field_infos, annotation=annotation, default=default)
-        field_metadata: list[Any] = []
-        for a in metadata:
-            if _typing_extra.is_deprecated_instance(a):
-                field_info.deprecated = a.message
-            elif not isinstance(a, FieldInfo):
-                field_metadata.append(a)
-            else:
-                field_metadata.extend(a.metadata)
-        field_info.metadata = field_metadata
+    if not metadata:
+        # No metadata, e.g. `field: int = ...`, or `field: Final[str] = ...`:
+        field_info = FieldInfo(annotation=type_expr, default=default, frozen=final or None)
+        field_info._qualifiers = inspected_ann.qualifiers
         return field_info
 
-    return FieldInfo(annotation=annotation, default=default, frozen=final or None)  # pyright: ignore[reportArgumentType]
+    # With metadata, e.g. `field: Annotated[int, Field(...), Gt(1)] = ...`:
+    field_infos = [a for a in metadata if isinstance(a, FieldInfo)]
+    field_info = FieldInfo.merge_field_infos(*field_infos, annotation=type_expr, default=default)
+    field_metadata: list[Any] = []
+    for a in metadata:
+        if typing_objects.is_deprecated(a):
+            field_info.deprecated = a.message
+        elif not isinstance(a, FieldInfo):
+            field_metadata.append(a)
+        else:
+            field_metadata.extend(a.metadata)
+    field_info.metadata = field_metadata
+    field_info._qualifiers = inspected_ann.qualifiers
+    return field_info
 
 ```
 
@@ -13926,7 +14321,7 @@ Mypy Warning
 Even with the `@property` or `@cached_property` applied to your function before `@computed_field`,
 mypy may throw a `Decorated property not supported` error.
 See [mypy issue #1362](https://github.com/python/mypy/issues/1362), for more information.
-To avoid this error message, add `# type: ignore[misc]` to the `@computed_field` line.
+To avoid this error message, add `# type: ignore[prop-decorator]` to the `@computed_field` line.
 
 [pyright](https://github.com/microsoft/pyright) supports `@computed_field` without error.
 
@@ -13988,9 +14383,11 @@ try:
         def a(self) -> str:
             return 'new a'
 
-except ValueError as e:
-    print(repr(e))
-    #> ValueError("you can't override a field with a computed field")
+except TypeError as e:
+    print(e)
+    '''
+    Field 'a' of class 'Child' overrides symbol of same name in a parent class. This override with a computed_field is incompatible.
+    '''
 
 ```
 
@@ -14090,7 +14487,7 @@ def computed_field(
         Even with the `@property` or `@cached_property` applied to your function before `@computed_field`,
         mypy may throw a `Decorated property not supported` error.
         See [mypy issue #1362](https://github.com/python/mypy/issues/1362), for more information.
-        To avoid this error message, add `# type: ignore[misc]` to the `@computed_field` line.
+        To avoid this error message, add `# type: ignore[prop-decorator]` to the `@computed_field` line.
 
         [pyright](https://github.com/microsoft/pyright) supports `@computed_field` without error.
 
@@ -14148,9 +14545,11 @@ def computed_field(
             def a(self) -> str:
                 return 'new a'
 
-    except ValueError as e:
-        print(repr(e))
-        #> ValueError("you can't override a field with a computed field")
+    except TypeError as e:
+        print(e)
+        '''
+        Field 'a' of class 'Child' overrides symbol of same name in a parent class. This override with a computed_field is incompatible.
+        '''
     ```
 
     Private properties decorated with `@computed_field` have `repr=False` by default.
@@ -15980,9 +16379,7 @@ def build_schema_type_to_method(
         TypeError: If no method has been defined for generating a JSON schema for a given pydantic core schema type.
     """
     mapping: dict[CoreSchemaOrFieldType, Callable[[CoreSchemaOrField], JsonSchemaValue]] = {}
-    core_schema_types: list[CoreSchemaOrFieldType] = _typing_extra.literal_values(
-        CoreSchemaOrFieldType  # type: ignore
-    )
+    core_schema_types: list[CoreSchemaOrFieldType] = list(get_literal_values(CoreSchemaOrFieldType))
     for key in core_schema_types:
         method_name = f'{key.replace("-", "_")}_schema'
         try:
@@ -16281,8 +16678,7 @@ def generate_inner(self, schema: CoreSchemaOrField) -> JsonSchemaValue:  # noqa:
                 json_schema = generate_for_schema_type(schema_or_field)
             else:
                 raise TypeError(f'Unexpected schema type: schema={schema_or_field}')
-        if _core_utils.is_core_schema(schema_or_field):
-            json_schema = populate_defs(schema_or_field, json_schema)
+
         return json_schema
 
     current_handler = _schema_generation_shared.GenerateJsonSchemaHandler(self, handler_func)
@@ -16343,10 +16739,7 @@ def generate_inner(self, schema: CoreSchemaOrField) -> JsonSchemaValue:  # noqa:
             current_handler: GetJsonSchemaHandler = current_handler,
             js_modify_function: GetJsonSchemaFunction = js_modify_function,
         ) -> JsonSchemaValue:
-            json_schema = js_modify_function(schema_or_field, current_handler)
-            if _core_utils.is_core_schema(schema_or_field):
-                json_schema = populate_defs(schema_or_field, json_schema)
-            return json_schema
+            return js_modify_function(schema_or_field, current_handler)
 
         current_handler = _schema_generation_shared.GenerateJsonSchemaHandler(self, new_handler_func)
 
@@ -19801,15 +20194,15 @@ def encode_default(self, dft: Any) -> Any:
         default = (
             dft
             if _type_has_config(type(dft))
-            else TypeAdapter(type(dft), config=config.config_dict).dump_python(dft, mode='json')
+            else TypeAdapter(type(dft), config=config.config_dict).dump_python(
+                dft, by_alias=self.by_alias, mode='json'
+            )
         )
     except PydanticSchemaGenerationError:
         raise pydantic_core.PydanticSerializationError(f'Unable to encode default value {dft}')
 
     return pydantic_core.to_jsonable_python(
-        default,
-        timedelta_mode=config.ser_json_timedelta,
-        bytes_mode=config.ser_json_bytes,
+        default, timedelta_mode=config.ser_json_timedelta, bytes_mode=config.ser_json_bytes, by_alias=self.by_alias
     )
 
 ```
@@ -21339,7 +21732,9 @@ validate_python(
     self_instance: Any | None = None,
     allow_partial: (
         bool | Literal["off", "on", "trailing-strings"]
-    ) = False
+    ) = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None
 ) -> Any
 
 ```
@@ -21356,6 +21751,8 @@ Parameters:
 | `context` | `Any | None` | The context to use for validation, this is passed to functional validators as `info.context`. | `None` |
 | `self_instance` | `Any | None` | An instance of a model set attributes on from validation, this is used when running validation from the `__init__` method of a model. | `None` |
 | `allow_partial` | `bool | Literal['off', 'on', 'trailing-strings']` | Whether to allow partial validation; if `True` errors in the last element of sequences and mappings are ignored. `'trailing-strings'` means any final unfinished JSON string is included in the result. | `False` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Raises:
 
@@ -21381,7 +21778,9 @@ isinstance_python(
     strict: bool | None = None,
     from_attributes: bool | None = None,
     context: Any | None = None,
-    self_instance: Any | None = None
+    self_instance: Any | None = None,
+    by_alias: bool | None = None,
+    by_name: bool | None = None
 ) -> bool
 
 ```
@@ -21410,7 +21809,9 @@ validate_json(
     self_instance: Any | None = None,
     allow_partial: (
         bool | Literal["off", "on", "trailing-strings"]
-    ) = False
+    ) = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None
 ) -> Any
 
 ```
@@ -21432,6 +21833,8 @@ Parameters:
 | `context` | `Any | None` | The context to use for validation, this is passed to functional validators as `info.context`. | `None` |
 | `self_instance` | `Any | None` | An instance of a model set attributes on from validation. | `None` |
 | `allow_partial` | `bool | Literal['off', 'on', 'trailing-strings']` | Whether to allow partial validation; if `True` incomplete JSON will be parsed successfully and errors in the last element of sequences and mappings are ignored. `'trailing-strings'` means any final unfinished JSON string is included in the result. | `False` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Raises:
 
@@ -21458,7 +21861,9 @@ validate_strings(
     context: Any | None = None,
     allow_partial: (
         bool | Literal["off", "on", "trailing-strings"]
-    ) = False
+    ) = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None
 ) -> Any
 
 ```
@@ -21476,6 +21881,8 @@ Parameters:
 | `strict` | `bool | None` | Whether to validate the object in strict mode. If `None`, the value of `CoreConfig.strict` is used. | `None` |
 | `context` | `Any | None` | The context to use for validation, this is passed to functional validators as `info.context`. | `None` |
 | `allow_partial` | `bool | Literal['off', 'on', 'trailing-strings']` | Whether to allow partial validation; if `True` errors in the last element of sequences and mappings are ignored. `'trailing-strings'` means any final unfinished JSON string is included in the result. | `False` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Raises:
 
@@ -21502,7 +21909,9 @@ validate_assignment(
     *,
     strict: bool | None = None,
     from_attributes: bool | None = None,
-    context: Any | None = None
+    context: Any | None = None,
+    by_alias: bool | None = None,
+    by_name: bool | None = None
 ) -> (
     dict[str, Any]
     | tuple[dict[str, Any], dict[str, Any] | None, set[str]]
@@ -21522,6 +21931,8 @@ Parameters:
 | `strict` | `bool | None` | Whether to validate the object in strict mode. If `None`, the value of `CoreConfig.strict` is used. | `None` |
 | `from_attributes` | `bool | None` | Whether to validate objects as inputs to models by extracting attributes. If `None`, the value of `CoreConfig.from_attributes` is used. | `None` |
 | `context` | `Any | None` | The context to use for validation, this is passed to functional validators as `info.context`. | `None` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Raises:
 
@@ -21603,7 +22014,7 @@ to_python(
     mode: str | None = None,
     include: _IncEx | None = None,
     exclude: _IncEx | None = None,
-    by_alias: bool = True,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -21628,7 +22039,7 @@ Parameters:
 | `mode` | `str | None` | The serialization mode to use, either `'python'` or `'json'`, defaults to `'python'`. In JSON mode, all values are converted to JSON compatible types, e.g. `None`, `int`, `float`, `str`, `list`, `dict`. | `None` |
 | `include` | `_IncEx | None` | A set of fields to include, if `None` all fields are included. | `None` |
 | `exclude` | `_IncEx | None` | A set of fields to exclude, if `None` no fields are excluded. | `None` |
-| `by_alias` | `bool` | Whether to use the alias names of fields. | `True` |
+| `by_alias` | `bool | None` | Whether to use the alias names of fields. | `None` |
 | `exclude_unset` | `bool` | Whether to exclude fields that are not set, e.g. are not included in `__pydantic_fields_set__`. | `False` |
 | `exclude_defaults` | `bool` | Whether to exclude fields that are equal to their default value. | `False` |
 | `exclude_none` | `bool` | Whether to exclude fields that have a value of `None`. | `False` |
@@ -21661,7 +22072,7 @@ to_json(
     indent: int | None = None,
     include: _IncEx | None = None,
     exclude: _IncEx | None = None,
-    by_alias: bool = True,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -21686,7 +22097,7 @@ Parameters:
 | `indent` | `int | None` | If `None`, the JSON will be compact, otherwise it will be pretty-printed with the indent provided. | `None` |
 | `include` | `_IncEx | None` | A set of fields to include, if `None` all fields are included. | `None` |
 | `exclude` | `_IncEx | None` | A set of fields to exclude, if `None` no fields are excluded. | `None` |
-| `by_alias` | `bool` | Whether to use the alias names of fields. | `True` |
+| `by_alias` | `bool | None` | Whether to use the alias names of fields. | `None` |
 | `exclude_unset` | `bool` | Whether to exclude fields that are not set, e.g. are not included in `__pydantic_fields_set__`. | `False` |
 | `exclude_defaults` | `bool` | Whether to exclude fields that are equal to their default value. | `False` |
 | `exclude_none` | `bool` | Whether to exclude fields that have a value of `None`. | `False` |
@@ -21904,6 +22315,18 @@ Also useful for passing custom error data forward.
 
 
 
+### url `instance-attribute`
+
+```
+url: NotRequired[str]
+
+```
+
+The documentation URL giving information about the error. No URL is available if
+a `PydanticCustomError` is used.
+
+
+
 
 
 
@@ -21919,7 +22342,7 @@ type: str | PydanticCustomError
 
 ```
 
-The type of error that occurred, this should a "slug" identifier that changes rarely or never.
+The type of error that occurred, this should be a "slug" identifier that changes rarely or never.
 
 
 
@@ -22669,7 +23092,7 @@ to_json(
     indent: int | None = None,
     include: _IncEx | None = None,
     exclude: _IncEx | None = None,
-    by_alias: bool = True,
+    by_alias: bool | None = None,
     exclude_none: bool = False,
     round_trip: bool = False,
     timedelta_mode: Literal["iso8601", "float"] = "iso8601",
@@ -22697,7 +23120,7 @@ Parameters:
 | `indent` | `int | None` | If `None`, the JSON will be compact, otherwise it will be pretty-printed with the indent provided. | `None` |
 | `include` | `_IncEx | None` | A set of fields to include, if `None` all fields are included. | `None` |
 | `exclude` | `_IncEx | None` | A set of fields to exclude, if `None` no fields are excluded. | `None` |
-| `by_alias` | `bool` | Whether to use the alias names of fields. | `True` |
+| `by_alias` | `bool | None` | Whether to use the alias names of fields. | `None` |
 | `exclude_none` | `bool` | Whether to exclude fields that have a value of `None`. | `False` |
 | `round_trip` | `bool` | Whether to enable serialization and validation round-trip support. | `False` |
 | `timedelta_mode` | `Literal['iso8601', 'float']` | How to serialize `timedelta` objects, either `'iso8601'` or `'float'`. | `'iso8601'` |
@@ -22776,7 +23199,7 @@ to_jsonable_python(
     *,
     include: _IncEx | None = None,
     exclude: _IncEx | None = None,
-    by_alias: bool = True,
+    by_alias: bool | None = None,
     exclude_none: bool = False,
     round_trip: bool = False,
     timedelta_mode: Literal["iso8601", "float"] = "iso8601",
@@ -22804,7 +23227,7 @@ Parameters:
 | `value` | `Any` | The Python object to serialize. | *required* |
 | `include` | `_IncEx | None` | A set of fields to include, if `None` all fields are included. | `None` |
 | `exclude` | `_IncEx | None` | A set of fields to exclude, if `None` no fields are excluded. | `None` |
-| `by_alias` | `bool` | Whether to use the alias names of fields. | `True` |
+| `by_alias` | `bool | None` | Whether to use the alias names of fields. | `None` |
 | `exclude_none` | `bool` | Whether to exclude fields that have a value of `None`. | `False` |
 | `round_trip` | `bool` | Whether to enable serialization and validation round-trip support. | `False` |
 | `timedelta_mode` | `Literal['iso8601', 'float']` | How to serialize `timedelta` objects, either `'iso8601'` or `'float'`. | `'iso8601'` |
@@ -22874,7 +23297,6 @@ Attributes:
 | `loc_by_alias` | `bool` | Whether to use the used alias (or first alias for "field required" errors) instead of `field_names` to construct error `loc`s. Default is `True`. |
 | `revalidate_instances` | `Literal['always', 'never', 'subclass-instances']` | Whether instances of models and dataclasses should re-validate. Default is 'never'. |
 | `validate_default` | `bool` | Whether to validate default values during validation. Default is `False`. |
-| `populate_by_name` | `bool` | Whether an aliased field may be populated by its name as given by the model attribute, as well as the alias. (Replaces 'allow\_population\_by\_field\_name' in Pydantic v1.) Default is `False`. |
 | `str_max_length` | `int` | The maximum length for string fields. |
 | `str_min_length` | `int` | The minimum length for string fields. |
 | `str_strip_whitespace` | `bool` | Whether to strip whitespace from string fields. |
@@ -22890,6 +23312,9 @@ Attributes:
 | `coerce_numbers_to_str` | `bool` | Whether to enable coercion of any `Number` type to `str` (not applicable in `strict` mode). |
 | `regex_engine` | `Literal['rust-regex', 'python-re']` | The regex engine to use for regex pattern validation. Default is 'rust-regex'. See `StringSchema`. |
 | `cache_strings` | `Union[bool, Literal['all', 'keys', 'none']]` | Whether to cache strings. Default is `True`, `True` or `'all'` is required to cache strings during general validation since validators don't know if they're in a key or a value. |
+| `validate_by_alias` | `bool` | Whether to use the field's alias when validating against the provided input data. Default is `True`. |
+| `validate_by_name` | `bool` | Whether to use the field's name when validating against the provided input data. Default is `False`. Replacement for `populate_by_name`. |
+| `serialize_by_alias` | `bool` | Whether to serialize by alias. Default is `False`, expected to change to `True` in V3. |
 
 
 
@@ -26733,7 +27158,6 @@ union_schema(
         dict[str, str | int] | None
     ) = None,
     mode: Literal["smart", "left_to_right"] | None = None,
-    strict: bool | None = None,
     ref: str | None = None,
     metadata: dict[str, Any] | None = None,
     serialization: SerSchema | None = None
@@ -26763,7 +27187,6 @@ Parameters:
 | `custom_error_message` | `str | None` | The custom error message to use if the validation fails | `None` |
 | `custom_error_context` | `dict[str, str | int] | None` | The custom error context to use if the validation fails | `None` |
 | `mode` | `Literal['smart', 'left_to_right'] | None` | How to select which choice to return \* `smart` (default) will try to return the choice which is the closest match to the input value \* `left_to_right` will return the first choice in `choices` which succeeds validation | `None` |
-| `strict` | `bool | None` | Whether the underlying schemas should be validated with strict mode | `None` |
 | `ref` | `str | None` | optional unique identifier of the schema, used to reference the schema in other places | `None` |
 | `metadata` | `dict[str, Any] | None` | Any other information you want to include with the schema, not used by pydantic-core | `None` |
 | `serialization` | `SerSchema | None` | Custom serialization schema | `None` |
@@ -26778,7 +27201,6 @@ def union_schema(
     custom_error_message: str | None = None,
     custom_error_context: dict[str, str | int] | None = None,
     mode: Literal['smart', 'left_to_right'] | None = None,
-    strict: bool | None = None,
     ref: str | None = None,
     metadata: dict[str, Any] | None = None,
     serialization: SerSchema | None = None,
@@ -26804,7 +27226,6 @@ def union_schema(
         mode: How to select which choice to return
             * `smart` (default) will try to return the choice which is the closest match to the input value
             * `left_to_right` will return the first choice in `choices` which succeeds validation
-        strict: Whether the underlying schemas should be validated with strict mode
         ref: optional unique identifier of the schema, used to reference the schema in other places
         metadata: Any other information you want to include with the schema, not used by pydantic-core
         serialization: Custom serialization schema
@@ -26817,7 +27238,6 @@ def union_schema(
         custom_error_message=custom_error_message,
         custom_error_context=custom_error_context,
         mode=mode,
-        strict=strict,
         ref=ref,
         metadata=metadata,
         serialization=serialization,
@@ -27379,12 +27799,12 @@ typed_dict_schema(
     fields: dict[str, TypedDictField],
     *,
     cls: type[Any] | None = None,
+    cls_name: str | None = None,
     computed_fields: list[ComputedField] | None = None,
     strict: bool | None = None,
     extras_schema: CoreSchema | None = None,
     extra_behavior: ExtraBehavior | None = None,
     total: bool | None = None,
-    populate_by_name: bool | None = None,
     ref: str | None = None,
     metadata: dict[str, Any] | None = None,
     serialization: SerSchema | None = None,
@@ -27417,6 +27837,7 @@ Parameters:
 | --- | --- | --- | --- |
 | `fields` | `dict[str, TypedDictField]` | The fields to use for the typed dict | *required* |
 | `cls` | `type[Any] | None` | The class to use for the typed dict | `None` |
+| `cls_name` | `str | None` | The name to use in error locations. Falls back to `cls.__name__`, or the validator name if no class is provided. | `None` |
 | `computed_fields` | `list[ComputedField] | None` | Computed fields to use when serializing the model, only applies when directly inside a model | `None` |
 | `strict` | `bool | None` | Whether the typed dict is strict | `None` |
 | `extras_schema` | `CoreSchema | None` | The extra validator to use for the typed dict | `None` |
@@ -27424,7 +27845,6 @@ Parameters:
 | `metadata` | `dict[str, Any] | None` | Any other information you want to include with the schema, not used by pydantic-core | `None` |
 | `extra_behavior` | `ExtraBehavior | None` | The extra behavior to use for the typed dict | `None` |
 | `total` | `bool | None` | Whether the typed dict is total, otherwise uses `typed_dict_total` from config | `None` |
-| `populate_by_name` | `bool | None` | Whether the typed dict should populate by name | `None` |
 | `serialization` | `SerSchema | None` | Custom serialization schema | `None` |
 
 Source code in `.venv/lib/python3.12/site-packages/pydantic_core/core_schema.py`
@@ -27433,12 +27853,12 @@ def typed_dict_schema(
     fields: dict[str, TypedDictField],
     *,
     cls: type[Any] | None = None,
+    cls_name: str | None = None,
     computed_fields: list[ComputedField] | None = None,
     strict: bool | None = None,
     extras_schema: CoreSchema | None = None,
     extra_behavior: ExtraBehavior | None = None,
     total: bool | None = None,
-    populate_by_name: bool | None = None,
     ref: str | None = None,
     metadata: dict[str, Any] | None = None,
     serialization: SerSchema | None = None,
@@ -27465,6 +27885,8 @@ def typed_dict_schema(
     Args:
         fields: The fields to use for the typed dict
         cls: The class to use for the typed dict
+        cls_name: The name to use in error locations. Falls back to `cls.__name__`, or the validator name if no class
+            is provided.
         computed_fields: Computed fields to use when serializing the model, only applies when directly inside a model
         strict: Whether the typed dict is strict
         extras_schema: The extra validator to use for the typed dict
@@ -27472,19 +27894,18 @@ def typed_dict_schema(
         metadata: Any other information you want to include with the schema, not used by pydantic-core
         extra_behavior: The extra behavior to use for the typed dict
         total: Whether the typed dict is total, otherwise uses `typed_dict_total` from config
-        populate_by_name: Whether the typed dict should populate by name
         serialization: Custom serialization schema
     """
     return _dict_not_none(
         type='typed-dict',
         fields=fields,
         cls=cls,
+        cls_name=cls_name,
         computed_fields=computed_fields,
         strict=strict,
         extras_schema=extras_schema,
         extra_behavior=extra_behavior,
         total=total,
-        populate_by_name=populate_by_name,
         ref=ref,
         metadata=metadata,
         serialization=serialization,
@@ -27589,7 +28010,6 @@ model_fields_schema(
     strict: bool | None = None,
     extras_schema: CoreSchema | None = None,
     extra_behavior: ExtraBehavior | None = None,
-    populate_by_name: bool | None = None,
     from_attributes: bool | None = None,
     ref: str | None = None,
     metadata: dict[str, Any] | None = None,
@@ -27624,7 +28044,6 @@ Parameters:
 | `ref` | `str | None` | optional unique identifier of the schema, used to reference the schema in other places | `None` |
 | `metadata` | `dict[str, Any] | None` | Any other information you want to include with the schema, not used by pydantic-core | `None` |
 | `extra_behavior` | `ExtraBehavior | None` | The extra behavior to use for the typed dict | `None` |
-| `populate_by_name` | `bool | None` | Whether the typed dict should populate by name | `None` |
 | `from_attributes` | `bool | None` | Whether the typed dict should be populated from attributes | `None` |
 | `serialization` | `SerSchema | None` | Custom serialization schema | `None` |
 
@@ -27638,7 +28057,6 @@ def model_fields_schema(
     strict: bool | None = None,
     extras_schema: CoreSchema | None = None,
     extra_behavior: ExtraBehavior | None = None,
-    populate_by_name: bool | None = None,
     from_attributes: bool | None = None,
     ref: str | None = None,
     metadata: dict[str, Any] | None = None,
@@ -27667,7 +28085,6 @@ def model_fields_schema(
         ref: optional unique identifier of the schema, used to reference the schema in other places
         metadata: Any other information you want to include with the schema, not used by pydantic-core
         extra_behavior: The extra behavior to use for the typed dict
-        populate_by_name: Whether the typed dict should populate by name
         from_attributes: Whether the typed dict should be populated from attributes
         serialization: Custom serialization schema
     """
@@ -27679,7 +28096,6 @@ def model_fields_schema(
         strict=strict,
         extras_schema=extras_schema,
         extra_behavior=extra_behavior,
-        populate_by_name=populate_by_name,
         from_attributes=from_attributes,
         ref=ref,
         metadata=metadata,
@@ -27979,7 +28395,6 @@ dataclass_args_schema(
     fields: list[DataclassField],
     *,
     computed_fields: list[ComputedField] | None = None,
-    populate_by_name: bool | None = None,
     collect_init_only: bool | None = None,
     ref: str | None = None,
     metadata: dict[str, Any] | None = None,
@@ -28013,7 +28428,6 @@ Parameters:
 | `dataclass_name` | `str` | The name of the dataclass being validated | *required* |
 | `fields` | `list[DataclassField]` | The fields to use for the dataclass | *required* |
 | `computed_fields` | `list[ComputedField] | None` | Computed fields to use when serializing the dataclass | `None` |
-| `populate_by_name` | `bool | None` | Whether to populate by name | `None` |
 | `collect_init_only` | `bool | None` | Whether to collect init only fields into a dict to pass to `__post_init__` | `None` |
 | `ref` | `str | None` | optional unique identifier of the schema, used to reference the schema in other places | `None` |
 | `metadata` | `dict[str, Any] | None` | Any other information you want to include with the schema, not used by pydantic-core | `None` |
@@ -28027,7 +28441,6 @@ def dataclass_args_schema(
     fields: list[DataclassField],
     *,
     computed_fields: list[ComputedField] | None = None,
-    populate_by_name: bool | None = None,
     collect_init_only: bool | None = None,
     ref: str | None = None,
     metadata: dict[str, Any] | None = None,
@@ -28055,7 +28468,6 @@ def dataclass_args_schema(
         dataclass_name: The name of the dataclass being validated
         fields: The fields to use for the dataclass
         computed_fields: Computed fields to use when serializing the dataclass
-        populate_by_name: Whether to populate by name
         collect_init_only: Whether to collect init only fields into a dict to pass to `__post_init__`
         ref: optional unique identifier of the schema, used to reference the schema in other places
         metadata: Any other information you want to include with the schema, not used by pydantic-core
@@ -28067,7 +28479,6 @@ def dataclass_args_schema(
         dataclass_name=dataclass_name,
         fields=fields,
         computed_fields=computed_fields,
-        populate_by_name=populate_by_name,
         collect_init_only=collect_init_only,
         ref=ref,
         metadata=metadata,
@@ -28282,7 +28693,8 @@ arguments\_schema
 arguments_schema(
     arguments: list[ArgumentsParameter],
     *,
-    populate_by_name: bool | None = None,
+    validate_by_name: bool | None = None,
+    validate_by_alias: bool | None = None,
     var_args_schema: CoreSchema | None = None,
     var_kwargs_mode: VarKwargsMode | None = None,
     var_kwargs_schema: CoreSchema | None = None,
@@ -28315,7 +28727,8 @@ Parameters:
 | Name | Type | Description | Default |
 | --- | --- | --- | --- |
 | `arguments` | `list[ArgumentsParameter]` | The arguments to use for the arguments schema | *required* |
-| `populate_by_name` | `bool | None` | Whether to populate by name | `None` |
+| `validate_by_name` | `bool | None` | Whether to populate by the parameter names, defaults to `False`. | `None` |
+| `validate_by_alias` | `bool | None` | Whether to populate by the parameter aliases, defaults to `True`. | `None` |
 | `var_args_schema` | `CoreSchema | None` | The variable args schema to use for the arguments schema | `None` |
 | `var_kwargs_mode` | `VarKwargsMode | None` | The validation mode to use for variadic keyword arguments. If `'uniform'`, every value of the keyword arguments will be validated against the `var_kwargs_schema` schema. If `'unpacked-typed-dict'`, the `var_kwargs_schema` argument must be a `typed_dict_schema` | `None` |
 | `var_kwargs_schema` | `CoreSchema | None` | The variable kwargs schema to use for the arguments schema | `None` |
@@ -28328,7 +28741,8 @@ Source code in `.venv/lib/python3.12/site-packages/pydantic_core/core_schema.py`
 def arguments_schema(
     arguments: list[ArgumentsParameter],
     *,
-    populate_by_name: bool | None = None,
+    validate_by_name: bool | None = None,
+    validate_by_alias: bool | None = None,
     var_args_schema: CoreSchema | None = None,
     var_kwargs_mode: VarKwargsMode | None = None,
     var_kwargs_schema: CoreSchema | None = None,
@@ -28355,7 +28769,8 @@ def arguments_schema(
 
     Args:
         arguments: The arguments to use for the arguments schema
-        populate_by_name: Whether to populate by name
+        validate_by_name: Whether to populate by the parameter names, defaults to `False`.
+        validate_by_alias: Whether to populate by the parameter aliases, defaults to `True`.
         var_args_schema: The variable args schema to use for the arguments schema
         var_kwargs_mode: The validation mode to use for variadic keyword arguments. If `'uniform'`, every value of the
             keyword arguments will be validated against the `var_kwargs_schema` schema. If `'unpacked-typed-dict'`,
@@ -28368,7 +28783,8 @@ def arguments_schema(
     return _dict_not_none(
         type='arguments',
         arguments_schema=arguments,
-        populate_by_name=populate_by_name,
+        validate_by_name=validate_by_name,
+        validate_by_alias=validate_by_alias,
         var_args_schema=var_args_schema,
         var_kwargs_mode=var_kwargs_mode,
         var_kwargs_schema=var_kwargs_schema,
@@ -33462,7 +33878,7 @@ model_dump(
     include: Any = None,
     exclude: Any = None,
     context: dict[str, Any] | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -33495,7 +33911,7 @@ def model_dump(  # type: ignore
     include: Any = None,
     exclude: Any = None,
     context: dict[str, Any] | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -34386,7 +34802,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for typed-dict
+    1 validation error for User
     id
       Field required [type=missing, input_value={'name': 'foo'}, input_type=dict]
     """
@@ -34415,7 +34831,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for typed-dict
+    1 validation error for User
     id
       Field required [type=missing, input_value={'name': 'foo'}, input_type=dict]
     """
@@ -34475,7 +34891,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for typed-dict
+    1 validation error for User
     identity.name
       Input should be a valid string [type=string_type, input_value=['Smith'], input_type=list]
     """
@@ -34491,7 +34907,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for typed-dict
+    1 validation error for User
     email
       Extra inputs are not permitted [type=extra_forbidden, input_value='john.smith@me.com', input_type=str]
     """
@@ -34545,7 +34961,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for typed-dict
+    1 validation error for User
     identity.name
       Input should be a valid string [type=string_type, input_value=['Smith'], input_type=list]
     """
@@ -34561,7 +34977,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for typed-dict
+    1 validation error for User
     email
       Extra inputs are not permitted [type=extra_forbidden, input_value='john.smith@me.com', input_type=str]
     """
@@ -34615,7 +35031,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for typed-dict
+    1 validation error for User
     identity.name
       Input should be a valid string [type=string_type, input_value=['Smith'], input_type=list]
     """
@@ -34631,7 +35047,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for typed-dict
+    1 validation error for User
     email
       Extra inputs are not permitted [type=extra_forbidden, input_value='john.smith@me.com', input_type=str]
     """
@@ -35400,6 +35816,8 @@ validate_python(
     experimental_allow_partial: (
         bool | Literal["off", "on", "trailing-strings"]
     ) = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> T
 
 ```
@@ -35415,6 +35833,8 @@ Parameters:
 | `from_attributes` | `bool | None` | Whether to extract data from object attributes. | `None` |
 | `context` | `dict[str, Any] | None` | Additional context to pass to the validator. | `None` |
 | `experimental_allow_partial` | `bool | Literal['off', 'on', 'trailing-strings']` | **Experimental** whether to enable [partial validation](../../concepts/experimental/#partial-validation), e.g. to process streams. \* False / 'off': Default behavior, no partial validation. \* True / 'on': Enable partial validation. \* 'trailing-strings': Enable partial validation and allow trailing strings in the input. | `False` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Note
 
@@ -35438,6 +35858,8 @@ def validate_python(
     from_attributes: bool | None = None,
     context: dict[str, Any] | None = None,
     experimental_allow_partial: bool | Literal['off', 'on', 'trailing-strings'] = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> T:
     """Validate a Python object against the model.
 
@@ -35451,6 +35873,8 @@ def validate_python(
             * False / 'off': Default behavior, no partial validation.
             * True / 'on': Enable partial validation.
             * 'trailing-strings': Enable partial validation and allow trailing strings in the input.
+        by_alias: Whether to use the field's alias when validating against the provided input data.
+        by_name: Whether to use the field's name when validating against the provided input data.
 
     !!! note
         When using `TypeAdapter` with a Pydantic `dataclass`, the use of the `from_attributes`
@@ -35459,12 +35883,20 @@ def validate_python(
     Returns:
         The validated object.
     """
+    if by_alias is False and by_name is not True:
+        raise PydanticUserError(
+            'At least one of `by_alias` or `by_name` must be set to True.',
+            code='validate-by-alias-and-name-false',
+        )
+
     return self.validator.validate_python(
         object,
         strict=strict,
         from_attributes=from_attributes,
         context=context,
         allow_partial=experimental_allow_partial,
+        by_alias=by_alias,
+        by_name=by_name,
     )
 
 ```
@@ -35485,6 +35917,8 @@ validate_json(
     experimental_allow_partial: (
         bool | Literal["off", "on", "trailing-strings"]
     ) = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> T
 
 ```
@@ -35503,6 +35937,8 @@ Parameters:
 | `strict` | `bool | None` | Whether to strictly check types. | `None` |
 | `context` | `dict[str, Any] | None` | Additional context to use during validation. | `None` |
 | `experimental_allow_partial` | `bool | Literal['off', 'on', 'trailing-strings']` | **Experimental** whether to enable [partial validation](../../concepts/experimental/#partial-validation), e.g. to process streams. \* False / 'off': Default behavior, no partial validation. \* True / 'on': Enable partial validation. \* 'trailing-strings': Enable partial validation and allow trailing strings in the input. | `False` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Returns:
 
@@ -35520,6 +35956,8 @@ def validate_json(
     strict: bool | None = None,
     context: dict[str, Any] | None = None,
     experimental_allow_partial: bool | Literal['off', 'on', 'trailing-strings'] = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> T:
     """!!! abstract "Usage Documentation"
         [JSON Parsing](../concepts/json.md#json-parsing)
@@ -35535,12 +35973,25 @@ def validate_json(
             * False / 'off': Default behavior, no partial validation.
             * True / 'on': Enable partial validation.
             * 'trailing-strings': Enable partial validation and allow trailing strings in the input.
+        by_alias: Whether to use the field's alias when validating against the provided input data.
+        by_name: Whether to use the field's name when validating against the provided input data.
 
     Returns:
         The validated object.
     """
+    if by_alias is False and by_name is not True:
+        raise PydanticUserError(
+            'At least one of `by_alias` or `by_name` must be set to True.',
+            code='validate-by-alias-and-name-false',
+        )
+
     return self.validator.validate_json(
-        data, strict=strict, context=context, allow_partial=experimental_allow_partial
+        data,
+        strict=strict,
+        context=context,
+        allow_partial=experimental_allow_partial,
+        by_alias=by_alias,
+        by_name=by_name,
     )
 
 ```
@@ -35561,6 +36012,8 @@ validate_strings(
     experimental_allow_partial: (
         bool | Literal["off", "on", "trailing-strings"]
     ) = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> T
 
 ```
@@ -35575,6 +36028,8 @@ Parameters:
 | `strict` | `bool | None` | Whether to strictly check types. | `None` |
 | `context` | `dict[str, Any] | None` | Additional context to use during validation. | `None` |
 | `experimental_allow_partial` | `bool | Literal['off', 'on', 'trailing-strings']` | **Experimental** whether to enable [partial validation](../../concepts/experimental/#partial-validation), e.g. to process streams. \* False / 'off': Default behavior, no partial validation. \* True / 'on': Enable partial validation. \* 'trailing-strings': Enable partial validation and allow trailing strings in the input. | `False` |
+| `by_alias` | `bool | None` | Whether to use the field's alias when validating against the provided input data. | `None` |
+| `by_name` | `bool | None` | Whether to use the field's name when validating against the provided input data. | `None` |
 
 Returns:
 
@@ -35592,6 +36047,8 @@ def validate_strings(
     strict: bool | None = None,
     context: dict[str, Any] | None = None,
     experimental_allow_partial: bool | Literal['off', 'on', 'trailing-strings'] = False,
+    by_alias: bool | None = None,
+    by_name: bool | None = None,
 ) -> T:
     """Validate object contains string data against the model.
 
@@ -35604,12 +36061,25 @@ def validate_strings(
             * False / 'off': Default behavior, no partial validation.
             * True / 'on': Enable partial validation.
             * 'trailing-strings': Enable partial validation and allow trailing strings in the input.
+        by_alias: Whether to use the field's alias when validating against the provided input data.
+        by_name: Whether to use the field's name when validating against the provided input data.
 
     Returns:
         The validated object.
     """
+    if by_alias is False and by_name is not True:
+        raise PydanticUserError(
+            'At least one of `by_alias` or `by_name` must be set to True.',
+            code='validate-by-alias-and-name-false',
+        )
+
     return self.validator.validate_strings(
-        obj, strict=strict, context=context, allow_partial=experimental_allow_partial
+        obj,
+        strict=strict,
+        context=context,
+        allow_partial=experimental_allow_partial,
+        by_alias=by_alias,
+        by_name=by_name,
     )
 
 ```
@@ -35674,7 +36144,7 @@ dump_python(
     mode: Literal["json", "python"] = "python",
     include: IncEx | None = None,
     exclude: IncEx | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -35699,7 +36169,7 @@ Parameters:
 | `mode` | `Literal['json', 'python']` | The output format. | `'python'` |
 | `include` | `IncEx | None` | Fields to include in the output. | `None` |
 | `exclude` | `IncEx | None` | Fields to exclude from the output. | `None` |
-| `by_alias` | `bool` | Whether to use alias names for field names. | `False` |
+| `by_alias` | `bool | None` | Whether to use alias names for field names. | `None` |
 | `exclude_unset` | `bool` | Whether to exclude unset fields. | `False` |
 | `exclude_defaults` | `bool` | Whether to exclude fields with default values. | `False` |
 | `exclude_none` | `bool` | Whether to exclude fields with None values. | `False` |
@@ -35725,7 +36195,7 @@ def dump_python(
     mode: Literal['json', 'python'] = 'python',
     include: IncEx | None = None,
     exclude: IncEx | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -35789,7 +36259,7 @@ dump_json(
     indent: int | None = None,
     include: IncEx | None = None,
     exclude: IncEx | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -35818,7 +36288,7 @@ Parameters:
 | `indent` | `int | None` | Number of spaces for JSON indentation. | `None` |
 | `include` | `IncEx | None` | Fields to include. | `None` |
 | `exclude` | `IncEx | None` | Fields to exclude. | `None` |
-| `by_alias` | `bool` | Whether to use alias names for field names. | `False` |
+| `by_alias` | `bool | None` | Whether to use alias names for field names. | `None` |
 | `exclude_unset` | `bool` | Whether to exclude unset fields. | `False` |
 | `exclude_defaults` | `bool` | Whether to exclude fields with default values. | `False` |
 | `exclude_none` | `bool` | Whether to exclude fields with a value of `None`. | `False` |
@@ -35844,7 +36314,7 @@ def dump_json(
     indent: int | None = None,
     include: IncEx | None = None,
     exclude: IncEx | None = None,
-    by_alias: bool = False,
+    by_alias: bool | None = None,
     exclude_unset: bool = False,
     exclude_defaults: bool = False,
     exclude_none: bool = False,
@@ -36608,6 +37078,75 @@ class Model(BaseModel):
     uuid5: UUID5
 
 Model(uuid5=uuid.uuid5(uuid.NAMESPACE_DNS, 'pydantic.org'))
+
+```
+
+
+
+### UUID6 `module-attribute`
+
+```
+UUID6 = Annotated[UUID, UuidVersion(6)]
+
+```
+
+A [UUID](https://docs.python.org/3/library/uuid.html) that must be version 6.
+
+```
+import uuid
+
+from pydantic import UUID6, BaseModel
+
+class Model(BaseModel):
+    uuid6: UUID6
+
+Model(uuid6=uuid.UUID('1efea953-c2d6-6790-aa0a-69db8c87df97'))
+
+```
+
+
+
+### UUID7 `module-attribute`
+
+```
+UUID7 = Annotated[UUID, UuidVersion(7)]
+
+```
+
+A [UUID](https://docs.python.org/3/library/uuid.html) that must be version 7.
+
+```
+import uuid
+
+from pydantic import UUID7, BaseModel
+
+class Model(BaseModel):
+    uuid7: UUID7
+
+Model(uuid7=uuid.UUID('0194fdcb-1c47-7a09-b52c-561154de0b4a'))
+
+```
+
+
+
+### UUID8 `module-attribute`
+
+```
+UUID8 = Annotated[UUID, UuidVersion(8)]
+
+```
+
+A [UUID](https://docs.python.org/3/library/uuid.html) that must be version 8.
+
+```
+import uuid
+
+from pydantic import UUID8, BaseModel
+
+class Model(BaseModel):
+    uuid8: UUID8
+
+Model(uuid8=uuid.UUID('81a0b92e-6078-8551-9c81-8ccb666bdab8'))
 
 ```
 
@@ -37476,7 +38015,7 @@ Attributes:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `uuid_version` | `Literal[1, 3, 4, 5]` | The version of the UUID. Must be one of 1, 3, 4, or 5. |
+| `uuid_version` | `Literal[1, 3, 4, 5, 6, 7, 8]` | The version of the UUID. Must be one of 1, 3, 4, 5, or 7. |
 
 Example
 ```
@@ -37499,7 +38038,7 @@ class UuidVersion:
     Use this class as an annotation via [`Annotated`](https://docs.python.org/3/library/typing.html#typing.Annotated), as seen below.
 
     Attributes:
-        uuid_version: The version of the UUID. Must be one of 1, 3, 4, or 5.
+        uuid_version: The version of the UUID. Must be one of 1, 3, 4, 5, or 7.
 
     Example:
         ```python
@@ -37512,7 +38051,7 @@ class UuidVersion:
         ```
     """
 
-    uuid_version: Literal[1, 3, 4, 5]
+    uuid_version: Literal[1, 3, 4, 5, 6, 7, 8]
 
     def __get_pydantic_json_schema__(
         self, core_schema: core_schema.CoreSchema, handler: GetJsonSchemaHandler
@@ -40346,7 +40885,7 @@ class Discriminator:
     A `str` discriminator must be the name of a field to discriminate against.
     """
     custom_error_type: str | None = None
-    """Type to use in [custom errors](../errors/errors.md#custom-errors) replacing the standard discriminated union
+    """Type to use in [custom errors](../errors/errors.md) replacing the standard discriminated union
     validation errors.
     """
     custom_error_message: str | None = None
@@ -40355,8 +40894,7 @@ class Discriminator:
     """Context to use in custom errors."""
 
     def __get_pydantic_core_schema__(self, source_type: Any, handler: GetCoreSchemaHandler) -> CoreSchema:
-        origin = _typing_extra.get_origin(source_type)
-        if not origin or not _typing_extra.origin_is_union(origin):
+        if not is_union_origin(get_origin(source_type)):
             raise TypeError(f'{type(self).__name__} must be used with a Union type, not {source_type}')
 
         if isinstance(self.discriminator, str):
@@ -40440,7 +40978,7 @@ custom_error_type: str | None = None
 
 ```
 
-Type to use in [custom errors](../../errors/errors/#custom-errors) replacing the standard discriminated union
+Type to use in [custom errors](../../errors/errors/) replacing the standard discriminated union
 validation errors.
 
 
@@ -41977,6 +42515,235 @@ You may set `alias_priority` on a field to change this behavior:
 
 The same precedence applies to `validation_alias` and `serialization_alias`.
 See more about the different field aliases under [field aliases](../fields/#field-aliases).
+
+Alias Configuration
+-------------------
+
+You can use [`ConfigDict`](../config/) settings or runtime validation/serialization
+settings to control whether or not aliases are used.
+
+### `ConfigDict` Settings
+
+You can use [configuration settings](../config/) to control, at the model level,
+whether or not aliases are used for validation and serialization. If you would like to control
+this behavior for nested models/surpassing the config-model boundary, use [runtime settings](#runtime-settings).
+
+#### Validation
+
+When validating data, you can enable population of attributes by attribute name, alias, or both.
+**By default**, Pydantic uses aliases for validation. Further configuration is available via:
+
+* `ConfigDict.validate_by_alias`: `True` by default
+* `ConfigDict.validate_by_name`: `False` by default
+
+```
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class Model(BaseModel):
+    my_field: str = Field(validation_alias='my_alias')
+
+    model_config = ConfigDict(validate_by_alias=True, validate_by_name=False)
+
+
+print(repr(Model(my_alias='foo')))  # (1)!
+#> Model(my_field='foo')
+
+```
+
+1. The alias `my_alias` is used for validation.
+
+```
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class Model(BaseModel):
+    my_field: str = Field(validation_alias='my_alias')
+
+    model_config = ConfigDict(validate_by_alias=False, validate_by_name=True)
+
+
+print(repr(Model(my_field='foo')))  # (1)!
+#> Model(my_field='foo')
+
+```
+
+1. the attribute identifier `my_field` is used for validation.
+
+```
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class Model(BaseModel):
+    my_field: str = Field(validation_alias='my_alias')
+
+    model_config = ConfigDict(validate_by_alias=True, validate_by_name=True)
+
+
+print(repr(Model(my_alias='foo')))  # (1)!
+#> Model(my_field='foo')
+
+print(repr(Model(my_field='foo')))  # (2)!
+#> Model(my_field='foo')
+
+```
+
+1. The alias `my_alias` is used for validation.
+2. the attribute identifier `my_field` is used for validation.
+
+
+
+Warning
+
+You cannot set both `validate_by_alias` and `validate_by_name` to `False`.
+A [user error](../../errors/usage_errors/#validate-by-alias-and-name-false) is raised in this case.
+
+#### Serialization
+
+When serializing data, you can enable serialization by alias, which is disabled by default.
+See the `ConfigDict.serialize_by_alias` API documentation
+for more details.
+
+```
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class Model(BaseModel):
+    my_field: str = Field(serialization_alias='my_alias')
+
+    model_config = ConfigDict(serialize_by_alias=True)
+
+
+m = Model(my_field='foo')
+print(m.model_dump())  # (1)!
+#> {'my_alias': 'foo'}
+
+```
+
+1. The alias `my_alias` is used for serialization.
+
+Note
+
+The fact that serialization by alias is disabled by default is notably inconsistent with the default for
+validation (where aliases are used by default). We anticipate changing this default in V3.
+
+### Runtime Settings
+
+You can use runtime alias flags to control alias use for validation and serialization
+on a per-call basis. If you would like to control this behavior on a model level, use
+[`ConfigDict` settings](#configdict-settings).
+
+#### Validation
+
+When validating data, you can enable population of attributes by attribute name, alias, or both.
+
+The `by_alias` and `by_name` flags are available on the `model_validate()`,
+`model_validate_json()`, and `model_validate_strings()` methods, as well as the `TypeAdapter` validation methods.
+
+By default:
+
+* `by_alias` is `True`
+* `by_name` is `False`
+
+```
+from pydantic import BaseModel, Field
+
+
+class Model(BaseModel):
+    my_field: str = Field(validation_alias='my_alias')
+
+
+m = Model.model_validate(
+    {'my_alias': 'foo'},  # (1)!
+    by_alias=True,
+    by_name=False,
+)
+print(repr(m))
+#> Model(my_field='foo')
+
+```
+
+1. The alias `my_alias` is used for validation.
+
+```
+from pydantic import BaseModel, Field
+
+
+class Model(BaseModel):
+    my_field: str = Field(validation_alias='my_alias')
+
+
+m = Model.model_validate(
+    {'my_field': 'foo'}, by_alias=False, by_name=True  # (1)!
+)
+print(repr(m))
+#> Model(my_field='foo')
+
+```
+
+1. The attribute name `my_field` is used for validation.
+
+```
+from pydantic import BaseModel, Field
+
+
+class Model(BaseModel):
+    my_field: str = Field(validation_alias='my_alias')
+
+
+m = Model.model_validate(
+    {'my_alias': 'foo'}, by_alias=True, by_name=True  # (1)!
+)
+print(repr(m))
+#> Model(my_field='foo')
+
+m = Model.model_validate(
+    {'my_field': 'foo'}, by_alias=True, by_name=True  # (2)!
+)
+print(repr(m))
+#> Model(my_field='foo')
+
+```
+
+1. The alias `my_alias` is used for validation.
+2. The attribute name `my_field` is used for validation.
+
+
+
+Warning
+
+You cannot set both `by_alias` and `by_name` to `False`.
+A [user error](../../errors/usage_errors/#validate-by-alias-and-name-false) is raised in this case.
+
+#### Serialization
+
+When serializing data, you can enable serialization by alias via the `by_alias` flag
+which is available on the `model_dump()` and
+`model_dump_json()` methods, as well as
+the `TypeAdapter` ones.
+
+By default, `by_alias` is `False`.
+
+```
+from pydantic import BaseModel, Field
+
+
+class Model(BaseModel):
+    my_field: str = Field(serialization_alias='my_alias')
+
+
+m = Model(my_field='foo')
+print(m.model_dump(by_alias=True))  # (1)!
+#> {'my_alias': 'foo'}
+
+```
+
+1. The alias `my_alias` is used for serialization.
+
+Note
+
+The fact that serialization by alias is disabled by default is notably inconsistent with the default for
+validation (where aliases are used by default). We anticipate changing this default in V3.
 
 
 
@@ -44014,7 +44781,10 @@ print(user.model_dump(by_alias=True))  # (2)!
    Note that the `by_alias` keyword argument defaults to `False`, and must be specified explicitly to dump
    models using the field (serialization) aliases.
    
-   When `by_alias=True`, the alias `'username'` is also used during serialization.
+   You can also use `ConfigDict.serialize_by_alias` to
+   configure this behavior at the model level.
+   
+   When `by_alias=True`, the alias `'username'` used during serialization.
 
 If you want to use an alias *only* for validation, you can use the `validation_alias` parameter:
 
@@ -44086,16 +44856,14 @@ user = User(username='johndoe')  # (1)!
 
 1. Accepted by type checkers.
 
-This means that when using the `populate_by_name` model
-setting (which allows both the field name and alias to be used during model validation), type checkers
-will error when the actual field name is used:
+This means that when using the `validate_by_name` model setting (which allows both the field name and alias to be used during model validation), type checkers will error when the actual field name is used:
 
 ```
 from pydantic import BaseModel, ConfigDict, Field
 
 
 class User(BaseModel):
-    model_config = ConfigDict(populate_by_name=True)
+    model_config = ConfigDict(validate_by_name=True)
 
     name: str = Field(alias='username')
 
@@ -44116,7 +44884,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class User(BaseModel):
-    model_config = ConfigDict(populate_by_name=True)
+    model_config = ConfigDict(validate_by_name=True, validate_by_alias=True)
 
     name: Annotated[str, Field(alias='username')]
 
@@ -49584,7 +50352,8 @@ This makes it easy to:
 For example:
 
 ```
-from typing import Any, Callable, Set
+from collections.abc import Callable
+from typing import Any
 
 from pydantic import (
     AliasChoices,
@@ -49620,7 +50389,7 @@ class Settings(BaseSettings):
 
     # to override domains:
     # export my_prefix_domains='["foo.com", "bar.com"]'
-    domains: Set[str] = set()
+    domains: set[str] = set()
 
     # to override more_settings:
     # export my_prefix_more_settings='{"foo": "x", "apple": 1}'
@@ -49634,9 +50403,9 @@ print(Settings().model_dump())
 {
     'auth_key': 'xxx',
     'api_key': 'xxx',
-    'redis_dsn': Url('redis://user:pass@localhost:6379/1'),
-    'pg_dsn': MultiHostUrl('postgres://user:pass@localhost:5432/foobar'),
-    'amqp_dsn': Url('amqp://user:pass@localhost:5672/'),
+    'redis_dsn': RedisDsn('redis://user:pass@localhost:6379/1'),
+    'pg_dsn': PostgresDsn('postgres://user:pass@localhost:5432/foobar'),
+    'amqp_dsn': AmqpDsn('amqp://user:pass@localhost:5672/'),
     'special_function': math.cos,
     'domains': set(),
     'more_settings': {'foo': 'bar', 'apple': 1},
@@ -49958,7 +50727,7 @@ You may also populate a complex type by providing your own source class.
 ```
 import json
 import os
-from typing import Any, List, Tuple, Type
+from typing import Any
 
 from pydantic.fields import FieldInfo
 
@@ -49979,17 +50748,17 @@ class MyCustomSource(EnvSettingsSource):
 
 
 class Settings(BaseSettings):
-    numbers: List[int]
+    numbers: list[int]
 
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         return (MyCustomSource(settings_cls),)
 
 
@@ -50006,20 +50775,19 @@ this behavior for a field and parse the value in your own validator, you can ann
 
 ```
 import os
-from typing import List
+from typing import Annotated
 
 from pydantic import field_validator
-from typing_extensions import Annotated
 
 from pydantic_settings import BaseSettings, NoDecode
 
 
 class Settings(BaseSettings):
-    numbers: Annotated[List[int], NoDecode]  # (1)!
+    numbers: Annotated[list[int], NoDecode]  # (1)!
 
     @field_validator('numbers', mode='before')
     @classmethod
-    def decode_numbers(cls, v: str) -> List[int]:
+    def decode_numbers(cls, v: str) -> list[int]:
         return [int(x) for x in v.split(',')]
 
 
@@ -50036,7 +50804,6 @@ You can also disable JSON parsing for all fields by setting the `enable_decoding
 
 ```
 import os
-from typing import List
 
 from pydantic import field_validator
 
@@ -50046,11 +50813,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(enable_decoding=False)
 
-    numbers: List[int]
+    numbers: list[int]
 
     @field_validator('numbers', mode='before')
     @classmethod
-    def decode_numbers(cls, v: str) -> List[int]:
+    def decode_numbers(cls, v: str) -> list[int]:
         return [int(x) for x in v.split(',')]
 
 
@@ -50065,10 +50832,9 @@ This will bypass the `enable_decoding` config setting:
 
 ```
 import os
-from typing import List
+from typing import Annotated
 
 from pydantic import field_validator
-from typing_extensions import Annotated
 
 from pydantic_settings import BaseSettings, ForceDecode, SettingsConfigDict
 
@@ -50076,12 +50842,12 @@ from pydantic_settings import BaseSettings, ForceDecode, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(enable_decoding=False)
 
-    numbers: Annotated[List[int], ForceDecode]
-    numbers1: List[int]  # (1)!
+    numbers: Annotated[list[int], ForceDecode]
+    numbers1: list[int]  # (1)!
 
     @field_validator('numbers1', mode='before')
     @classmethod
-    def decode_numbers1(cls, v: str) -> List[int]:
+    def decode_numbers1(cls, v: str) -> list[int]:
         return [int(x) for x in v.split(',')]
 
 
@@ -50323,7 +51089,6 @@ is customised](#customise-settings-sources):
 ```
 import os
 import sys
-from typing import Tuple, Type
 
 from pydantic_settings import (
     BaseSettings,
@@ -50338,12 +51103,12 @@ class Settings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         return env_settings, CliSettingsSource(settings_cls, cli_parse_args=True)
 
 
@@ -50365,13 +51130,12 @@ CLI argument parsing of lists supports intermixing of any of the below three sty
 
 ```
 import sys
-from typing import List
 
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings, cli_parse_args=True):
-    my_list: List[int]
+    my_list: list[int]
 
 
 sys.argv = ['example.py', '--my_list', '[1,2]']
@@ -50400,13 +51164,12 @@ These can be used in conjunction with list forms as well, e.g:
 
 ```
 import sys
-from typing import Dict
 
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings, cli_parse_args=True):
-    my_dict: Dict[str, int]
+    my_dict: dict[str, int]
 
 
 sys.argv = ['example.py', '--my_dict', '{"k1":1,"k2":2}']
@@ -50712,6 +51475,73 @@ For `BaseModel` and `pydantic.dataclasses.dataclass` types, `CliApp.run` will in
 * `cli_implicit_flags=True`
 * `cli_kebab_case=True`
 
+### Asynchronous CLI Commands
+
+Pydantic settings supports running asynchronous CLI commands via `CliApp.run` and `CliApp.run_subcommand`. With this feature, you can define async def methods within your Pydantic models (including subcommands) and have them executed just like their synchronous counterparts. Specifically:
+
+1. Asynchronous methods are supported: You can now mark your cli\_cmd or similar CLI entrypoint methods as async def and have CliApp execute them.
+2. Subcommands may also be asynchronous: If you have nested CLI subcommands, the final (lowest-level) subcommand methods can likewise be asynchronous.
+3. Limit asynchronous methods to final subcommands: Defining parent commands as asynchronous is not recommended, because it can result in additional threads and event loops being created. For best performance and to avoid unnecessary resource usage, only implement your deepest (child) subcommands as async def.
+
+Below is a simple example demonstrating an asynchronous top-level command:
+
+```
+from pydantic_settings import BaseSettings, CliApp
+
+
+class AsyncSettings(BaseSettings):
+    async def cli_cmd(self) -> None:
+        print('Hello from an async CLI method!')
+        #> Hello from an async CLI method!
+
+
+# If an event loop is already running, a new thread will be used;
+# otherwise, asyncio.run() is used to execute this async method.
+assert CliApp.run(AsyncSettings, cli_args=[]).model_dump() == {}
+
+```
+#### Asynchronous Subcommands
+
+As mentioned above, you can also define subcommands as async. However, only do so for the leaf (lowest-level) subcommand to avoid spawning new threads and event loops unnecessarily in parent commands:
+
+```
+from pydantic import BaseModel
+
+from pydantic_settings import (
+    BaseSettings,
+    CliApp,
+    CliPositionalArg,
+    CliSubCommand,
+)
+
+
+class Clone(BaseModel):
+    repository: CliPositionalArg[str]
+    directory: CliPositionalArg[str]
+
+    async def cli_cmd(self) -> None:
+        # Perform async tasks here, e.g. network or I/O operations
+        print(f'Cloning async from "{self.repository}" into "{self.directory}"')
+        #> Cloning async from "repo" into "dir"
+
+
+class Git(BaseSettings):
+    clone: CliSubCommand[Clone]
+
+    def cli_cmd(self) -> None:
+        # Run the final subcommand (clone/init). It is recommended to define async methods only at the deepest level.
+        CliApp.run_subcommand(self)
+
+
+CliApp.run(Git, cli_args=['clone', 'repo', 'dir']).model_dump() == {
+    'repository': 'repo',
+    'directory': 'dir',
+}
+
+```
+
+When executing a subcommand with an asynchronous cli\_cmd, Pydantic settings automatically detects whether the current thread already has an active event loop. If so, the async command is run in a fresh thread to avoid conflicts. Otherwise, it uses asyncio.run() in the current thread. This handling ensures your asynchronous subcommands “just work” without additional manual setup.
+
 ### Mutually Exclusive Groups
 
 CLI mutually exclusive groups can be created by inheriting from the `CliMutuallyExclusiveGroup` class.
@@ -50794,17 +51624,6 @@ default, boolean fields are "explicit", meaning a boolean value must be explicit
 
 Additionally, the provided `CliImplicitFlag` and `CliExplicitFlag` annotations can be used for more granular control
 when necessary.
-
-Note
-
-For `python < 3.9` the `--no-flag` option is not generated due to an underlying `argparse` limitation.
-
-
-Note
-
-For `python < 3.9` the `CliImplicitFlag` and `CliExplicitFlag` annotations can only be applied to optional boolean
-fields.
-
 
 ```
 from pydantic_settings import BaseSettings, CliExplicitFlag, CliImplicitFlag
@@ -51357,7 +52176,6 @@ Key Vault arrays (e.g. `MySecret--0`, `MySecret--1`) are not supported.
 
 ```
 import os
-from typing import Tuple, Type
 
 from azure.identity import DefaultAzureCredential
 from pydantic import BaseModel
@@ -51381,12 +52199,12 @@ class AzureKeyVaultSettings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         az_key_vault_settings = AzureKeyVaultSettingsSource(
             settings_cls,
             os.environ['AZURE_KEY_VAULT_URL'],
@@ -51421,8 +52239,6 @@ toml_file = ['config.default.toml', 'config.custom.toml']
 To use them, you can use the same mechanism described [here](#customise-settings-sources)
 
 ```
-from typing import Tuple, Type
-
 from pydantic import BaseModel
 
 from pydantic_settings import (
@@ -51445,12 +52261,12 @@ class Settings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         return (TomlConfigSettingsSource(settings_cls),)
 
 ```
@@ -51473,8 +52289,6 @@ This is controlled by providing `SettingsConfigDict(pyproject_toml_table_header=
 By default, `pyproject_toml_table_header=('tool', 'pydantic-settings')` which will load variables from the `[tool.pydantic-settings]` table.
 
 ```
-from typing import Tuple, Type
-
 from pydantic_settings import (
     BaseSettings,
     PydanticBaseSettingsSource,
@@ -51491,12 +52305,12 @@ class Settings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         return (PyprojectTomlConfigSettingsSource(settings_cls),)
 
 
@@ -51538,7 +52352,6 @@ However, there are two options to change this behavior.
 
 ```
 from pathlib import Path
-from typing import Tuple, Type
 
 from pydantic_settings import (
     BaseSettings,
@@ -51556,12 +52369,12 @@ class DiscoverSettings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         return (PyprojectTomlConfigSettingsSource(settings_cls),)
 
 
@@ -51573,12 +52386,12 @@ class ExplicitFilePathSettings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         return (
             PyprojectTomlConfigSettingsSource(
                 settings_cls, Path('~/.config').resolve() / 'pyproject.toml'
@@ -51616,8 +52429,6 @@ Each callable should take an instance of the settings class as its sole argument
 The order of the returned callables decides the priority of inputs; first item is the highest priority.
 
 ```
-from typing import Tuple, Type
-
 from pydantic import PostgresDsn
 
 from pydantic_settings import BaseSettings, PydanticBaseSettingsSource
@@ -51629,17 +52440,17 @@ class Settings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         return env_settings, init_settings, file_secret_settings
 
 
 print(Settings(database_dsn='postgres://postgres@localhost:5432/kwargs_db'))
-#> database_dsn=MultiHostUrl('postgres://postgres@localhost:5432/kwargs_db')
+#> database_dsn=PostgresDsn('postgres://postgres@localhost:5432/kwargs_db')
 
 ```
 
@@ -51653,7 +52464,7 @@ need to add your own custom sources, `settings_customise_sources` makes this ver
 ```
 import json
 from pathlib import Path
-from typing import Any, Dict, Tuple, Type
+from typing import Any
 
 from pydantic.fields import FieldInfo
 
@@ -51675,7 +52486,7 @@ class JsonConfigSettingsSource(PydanticBaseSettingsSource):
 
     def get_field_value(
         self, field: FieldInfo, field_name: str
-    ) -> Tuple[Any, str, bool]:
+    ) -> tuple[Any, str, bool]:
         encoding = self.config.get('env_file_encoding')
         file_content_json = json.loads(
             Path('tests/example_test_config.json').read_text(encoding)
@@ -51688,8 +52499,8 @@ class JsonConfigSettingsSource(PydanticBaseSettingsSource):
     ) -> Any:
         return value
 
-    def __call__(self) -> Dict[str, Any]:
-        d: Dict[str, Any] = {}
+    def __call__(self) -> dict[str, Any]:
+        d: dict[str, Any] = {}
 
         for field_name, field in self.settings_cls.model_fields.items():
             field_value, field_key, value_is_complex = self.get_field_value(
@@ -51712,12 +52523,12 @@ class Settings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         return (
             init_settings,
             JsonConfigSettingsSource(settings_cls),
@@ -51735,7 +52546,7 @@ print(Settings())
 Each source of settings can access the output of the previous ones.
 
 ```
-from typing import Any, Dict, Tuple
+from typing import Any
 
 from pydantic.fields import FieldInfo
 
@@ -51745,15 +52556,15 @@ from pydantic_settings import PydanticBaseSettingsSource
 class MyCustomSource(PydanticBaseSettingsSource):
     def get_field_value(
         self, field: FieldInfo, field_name: str
-    ) -> Tuple[Any, str, bool]: ...
+    ) -> tuple[Any, str, bool]: ...
 
-    def __call__(self) -> Dict[str, Any]:
+    def __call__(self) -> dict[str, Any]:
         # Retrieve the aggregated settings from previous sources
         current_state = self.current_state
         current_state.get('some_setting')
 
         # Retrive settings from all sources individually
-        # self.settings_sources_data["SettingsSourceName"]: Dict[str, Any]
+        # self.settings_sources_data["SettingsSourceName"]: dict[str, Any]
         settings_sources_data = self.settings_sources_data
         settings_sources_data['SomeSettingsSource'].get('some_setting')
 
@@ -51765,8 +52576,6 @@ class MyCustomSource(PydanticBaseSettingsSource):
 You might also want to disable a source:
 
 ```
-from typing import Tuple, Type
-
 from pydantic import ValidationError
 
 from pydantic_settings import BaseSettings, PydanticBaseSettingsSource
@@ -51778,12 +52587,12 @@ class Settings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
         file_secret_settings: PydanticBaseSettingsSource,
-    ) -> Tuple[PydanticBaseSettingsSource, ...]:
+    ) -> tuple[PydanticBaseSettingsSource, ...]:
         # here we choose to ignore arguments from init_settings
         return env_settings, file_secret_settings
 
@@ -52241,6 +53050,8 @@ If you want to do this and still get proper type-checking for this method, you c
 `if TYPE_CHECKING:` block:
 
 ```
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, Any, Literal
 
 from pydantic import BaseModel, model_serializer
@@ -52261,7 +53072,7 @@ class Model(BaseModel):
             mode: Literal['json', 'python'] | str = 'python',
             include: Any = None,
             exclude: Any = None,
-            by_alias: bool = False,
+            by_alias: bool | None = False,
             exclude_unset: bool = False,
             exclude_defaults: bool = False,
             exclude_none: bool = False,
@@ -53206,7 +54017,7 @@ try:
 except ValidationError as exc:
     print(exc)
     """
-    1 validation error for typed-dict
+    1 validation error for MyDict
     x
       Input should be a valid integer [type=int_type, input_value='1', input_type=str]
     """
@@ -53231,7 +54042,7 @@ try:
 except ValidationError as exc:
     print(exc)
     """
-    1 validation error for typed-dict
+    1 validation error for MyDict
     x
       Input should be a valid integer [type=int_type, input_value='1', input_type=str]
     """
@@ -53436,7 +54247,7 @@ try:
 except ValidationError as exc:
     print(exc)
     """
-    1 validation error for typed-dict
+    1 validation error for Outer
     inner.y
       Input should be a valid integer [type=int_type, input_value='2', input_type=str]
     """
@@ -53472,7 +54283,7 @@ try:
 except ValidationError as exc:
     print(exc)
     """
-    1 validation error for typed-dict
+    1 validation error for Outer
     inner.y
       Input should be a valid integer [type=int_type, input_value='2', input_type=str]
     """
@@ -53567,7 +54378,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for list[typed-dict]
+    1 validation error for list[User]
     0.id
       Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='wrong', input_type=str]
     """
@@ -53601,7 +54412,7 @@ try:
 except ValidationError as e:
     print(e)
     """
-    1 validation error for list[typed-dict]
+    1 validation error for list[User]
     0.id
       Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='wrong', input_type=str]
     """
@@ -53948,7 +54759,6 @@ print(Model.model_json_schema())  # (1)!
 from typing import Annotated
 
 from annotated_types import Gt
-from typing_extensions import TypeAliasType
 
 from pydantic import BaseModel
 
@@ -53984,6 +54794,47 @@ print(Model.model_json_schema())  # (1)!
 1. If `PositiveIntList` were to be defined as an implicit type alias, its definition
    would have been duplicated in both `'x'` and `'y'`.
 
+
+
+When to use named type aliases
+
+While (named) PEP 695 and implicit type aliases are meant to be equivalent for static type checkers,
+Pydantic will *not* understand field-specific metadata inside named aliases. That is, metadata such as
+`alias`, `default`, `deprecated`, *cannot* be used:
+
+```
+from typing import Annotated
+
+from typing_extensions import TypeAliasType
+
+from pydantic import BaseModel, Field
+
+MyAlias = TypeAliasType('MyAlias', Annotated[int, Field(default=1)])
+
+
+class Model(BaseModel):
+    x: MyAlias  # This is not allowed
+
+```
+
+
+```
+from typing import Annotated
+
+from pydantic import BaseModel, Field
+
+type MyAlias = Annotated[int, Field(default=1)]
+
+
+class Model(BaseModel):
+    x: MyAlias  # This is not allowed
+
+```
+
+
+
+Only metadata that can be applied to the annotated type itself is allowed
+(e.g. [validation constraints](../fields/#field-constraints) and JSON metadata).
 
 
 Note
@@ -57186,23 +58037,25 @@ Pydantic will raise a `ValidationError` whenever it finds an error in the data i
 
 Note
 
-Validation code should not raise `ValidationError` itself, but rather raise a `ValueError` or
-`AssertionError` (or subclass thereof) which will be caught and used to populate
-`ValidationError`.
+Validation code should not raise the `ValidationError` itself,
+but rather raise a `ValueError` or a `AssertionError` (or subclass thereof) which will
+be caught and used to populate the final `ValidationError`.
 
-One exception will be raised regardless of the number of errors found, that `ValidationError` will
-contain information about all the errors and how they happened.
+For more details, refer to the [dedicated section](../../concepts/validators/#raising-validation-errors)
+of the validators documentation.
+
+That `ValidationError` will contain information about all the errors and how they happened.
 
 You can access these errors in several ways:
 
 | Method | Description |
 | --- | --- |
-| `e.errors()` | Returns a list of errors found in the input data. |
-| `e.error_count()` | Returns the number of errors found in `errors`. |
-| `e.json()` | Returns a JSON representation of `errors`. |
+| `errors()` | Returns a list of `ErrorDetails` errors found in the input data. |
+| `error_count()` | Returns the number of errors. |
+| `json()` | Returns a JSON representation of the list errors. |
 | `str(e)` | Returns a human-readable representation of the errors. |
 
-Each error object contains:
+The `ErrorDetails` object is a dictionary. It contains the following:
 
 | Property | Description |
 | --- | --- |
@@ -57211,7 +58064,7 @@ Each error object contains:
 | `loc` | The error's location as a list. |
 | `msg` | A human-readable explanation of the error. |
 | `type` | A computer-readable identifier of the error type. |
-| `url` | The URL to further information about the error. |
+| `url` | The documentation URL giving information about the error. |
 
 The first item in the `loc` list will be the field where the error occurred, and if the field is a
 [sub-model](../../concepts/models/#nested-models), subsequent items will be present to indicate the nested location of the error.
@@ -57219,7 +58072,7 @@ The first item in the `loc` list will be the field where the error occurred, and
 As a demonstration:
 
 ```
-from pydantic import BaseModel, ValidationError, conint
+from pydantic import BaseModel, Field, ValidationError, field_validator
 
 
 class Location(BaseModel):
@@ -57229,18 +58082,25 @@ class Location(BaseModel):
 
 class Model(BaseModel):
     is_required: float
-    gt_int: conint(gt=42)
-    list_of_ints: list[int] = None
-    a_float: float = None
-    recursive_model: Location = None
+    gt_int: int = Field(gt=42)
+    list_of_ints: list[int]
+    a_float: float
+    recursive_model: Location
+
+    @field_validator('a_float', mode='after')
+    @classmethod
+    def validate_float(cls, value: float) -> float:
+        if value > 2.0:
+            raise ValueError('Invalid float value')
+        return value
 
 
-data = dict(
-    list_of_ints=['1', 2, 'bad'],
-    a_float='not a float',
-    recursive_model={'lat': 4.2, 'lng': 'New York'},
-    gt_int=21,
-)
+data = {
+    'list_of_ints': ['1', 2, 'bad'],
+    'a_float': 3.0,
+    'recursive_model': {'lat': 4.2, 'lng': 'New York'},
+    'gt_int': 21,
+}
 
 try:
     Model(**data)
@@ -57255,7 +58115,7 @@ except ValidationError as e:
     list_of_ints.2
       Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='bad', input_type=str]
     a_float
-      Input should be a valid number, unable to parse string as a number [type=float_parsing, input_value='not a float', input_type=str]
+      Value error, Invalid float value [type=value_error, input_value=3.0, input_type=float]
     recursive_model.lng
       Input should be a valid number, unable to parse string as a number [type=float_parsing, input_value='New York', input_type=str]
     """
@@ -57272,7 +58132,7 @@ except ValidationError as e:
             'msg': 'Field required',
             'input': {
                 'list_of_ints': ['1', 2, 'bad'],
-                'a_float': 'not a float',
+                'a_float': 3.0,
                 'recursive_model': {'lat': 4.2, 'lng': 'New York'},
                 'gt_int': 21,
             },
@@ -57294,11 +58154,12 @@ except ValidationError as e:
             'url': 'https://errors.pydantic.dev/2/v/int_parsing',
         },
         {
-            'type': 'float_parsing',
+            'type': 'value_error',
             'loc': ('a_float',),
-            'msg': 'Input should be a valid number, unable to parse string as a number',
-            'input': 'not a float',
-            'url': 'https://errors.pydantic.dev/2/v/float_parsing',
+            'msg': 'Value error, Invalid float value',
+            'input': 3.0,
+            'ctx': {'error': ValueError('Invalid float value')},
+            'url': 'https://errors.pydantic.dev/2/v/value_error',
         },
         {
             'type': 'float_parsing',
@@ -57311,95 +58172,14 @@ except ValidationError as e:
     """
 
 ```
-### Custom Errors
-
-In your custom data types or validators you should use `ValueError` or `AssertionError` to raise errors.
-
-See [validators](../../concepts/validators/) for more details on use of the `@validator` decorator.
-
-```
-from pydantic import BaseModel, ValidationError, field_validator
-
-
-class Model(BaseModel):
-    foo: str
-
-    @field_validator('foo')
-    def value_must_equal_bar(cls, v):
-        if v != 'bar':
-            raise ValueError('value must be "bar"')
-
-        return v
-
-
-try:
-    Model(foo='ber')
-except ValidationError as e:
-    print(e)
-    """
-    1 validation error for Model
-    foo
-      Value error, value must be "bar" [type=value_error, input_value='ber', input_type=str]
-    """
-    print(e.errors())
-    """
-    [
-        {
-            'type': 'value_error',
-            'loc': ('foo',),
-            'msg': 'Value error, value must be "bar"',
-            'input': 'ber',
-            'ctx': {'error': ValueError('value must be "bar"')},
-            'url': 'https://errors.pydantic.dev/2/v/value_error',
-        }
-    ]
-    """
-
-```
-
-You can also use `PydanticCustomError`, to fully control the error structure:
-
-```
-from pydantic_core import PydanticCustomError
-
-from pydantic import BaseModel, ValidationError, field_validator
-
-
-class Model(BaseModel):
-    foo: str
-
-    @field_validator('foo')
-    def value_must_equal_bar(cls, v):
-        if v != 'bar':
-            raise PydanticCustomError(
-                'not_a_bar',
-                'value is not "bar", got "{wrong_value}"',
-                dict(wrong_value=v),
-            )
-        return v
-
-
-try:
-    Model(foo='ber')
-except ValidationError as e:
-    print(e)
-    """
-    1 validation error for Model
-    foo
-      value is not "bar", got "ber" [type=not_a_bar, input_value='ber', input_type=str]
-    """
-
-```
 
 Error messages
 --------------
 
-Pydantic attempts to provide useful default error messages for validation and usage errors.
+Pydantic attempts to provide useful default error messages for validation and usage errors, which can be found here:
 
-We've provided documentation for default error codes in the following sections:
-
-* [Validation Errors](../validation_errors/)
-* [Usage Errors](../usage_errors/)
+* [Validation Errors](../validation_errors/): Errors that happen during data validation.
+* [Usage Errors](../usage_errors/): Errors that happen when using Pydantic.
 
 ### Customize error messages
 
@@ -59493,6 +60273,29 @@ except PydanticUserError as exc_info:
 
 
 
+`validate_by_alias` and `validate_by_name` both set to `False`
+--------------------------------------------------------------
+
+This error is raised when you set `validate_by_alias` and `validate_by_name` to `False` in the configuration.
+
+This is not allowed because it would make it impossible to populate attributes.
+
+```
+from pydantic import BaseModel, ConfigDict, Field, PydanticUserError
+
+try:
+
+    class Model(BaseModel):
+        a: int = Field(alias='A')
+
+        model_config = ConfigDict(
+            validate_by_alias=False, validate_by_name=False
+        )
+
+except PydanticUserError as exc_info:
+    assert exc_info.code == 'validate-by-alias-and-name-false'
+
+```
 
 
 Pydantic attempts to provide useful validation errors. Below are details on common validation errors users
@@ -62575,7 +63378,8 @@ More details about validation context can be found [here](../../concepts/validat
 `pydantic` is a great tool for validating data coming from various sources.
 In this section, we will look at how to validate data from different types of files.
 
-!!! Note:
+Note
+
 If you're using any of the below file formats to parse configuration / settings, you might want to
 consider using the `pydantic-settings` library, which offers builtin
 support for parsing this type of data.
@@ -63633,7 +64437,7 @@ Mypy plugin capabilities
 
 * Any required fields that don't have dynamically-determined aliases will be included as required
   keyword arguments.
-* If the `populate_by_name` model configuration value is set to
+* If the `validate_by_name` model configuration value is set to
   `True`, the generated signature will use the field names rather than aliases.
 * The [`init_forbid_extra`](#init_forbid_extra) and [`init_typed`](#init_typed) plugin configuration
   values can further fine-tune the synthesized `__init__` method.
@@ -63745,7 +64549,7 @@ For this reason, the plugin will add an extra `**kwargs: Any` parameter when syn
 ### `warn_required_dynamic_aliases`
 
 Whether to error when using a dynamically-determined alias or alias generator on a model with
-`populate_by_name` set to `False`. If such aliases are
+`validate_by_name` set to `False`. If such aliases are
 present, mypy cannot properly type check calls to `__init__`. In this case, it will default to
 treating all arguments as not required.
 

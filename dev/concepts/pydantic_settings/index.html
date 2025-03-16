@@ -222,35 +222,33 @@ to help you monitor and understand your
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" id="searchbox" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" required="">
       <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+
+        <button id="searchbox-clear" type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
         </button>
       </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
+
+        <div class="md-search__suggest"></div>
+
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
+      <div class="md-search__scrollwrap" tabindex="0">
+        <div class="md-search-result">
+          <div class="md-search-result__meta" id="type-to-start-searching">Type to start searching</div>
+          <ol class="md-search-result__list" id="hits" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -1318,6 +1316,30 @@ to help you monitor and understand your
       Creating CLI Applications
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-cli-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous CLI Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous CLI Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-subcommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous Subcommands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3570,6 +3592,30 @@ to help you monitor and understand your
 </li>
         
           <li class="md-nav__item">
+  <a href="#asynchronous-cli-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous CLI Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Asynchronous CLI Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-subcommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Asynchronous Subcommands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mutually-exclusive-groups" class="md-nav__link">
     <span class="md-ellipsis">
       Mutually Exclusive Groups
@@ -3883,7 +3929,8 @@ will still be used if the matching environment variable is not set.)</p>
 <li>Manually override specific settings in the initialiser where desired (e.g. in unit tests)</li>
 </ul>
 <p>For example:</p>
-<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Set</span>
+<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">AliasChoices</span><span class="p">,</span>
@@ -3919,7 +3966,7 @@ will still be used if the matching environment variable is not set.)</p>
 
     <span class="c1"># to override domains:</span>
     <span class="c1"># export my_prefix_domains=&#39;[&quot;foo.com&quot;, &quot;bar.com&quot;]&#39;</span>
-    <span class="n">domains</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">domains</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="c1"># to override more_settings:</span>
     <span class="c1"># export my_prefix_more_settings=&#39;{&quot;foo&quot;: &quot;x&quot;, &quot;apple&quot;: 1}&#39;</span>
@@ -3933,9 +3980,9 @@ will still be used if the matching environment variable is not set.)</p>
 <span class="sd">{</span>
 <span class="sd">    &#39;auth_key&#39;: &#39;xxx&#39;,</span>
 <span class="sd">    &#39;api_key&#39;: &#39;xxx&#39;,</span>
-<span class="sd">    &#39;redis_dsn&#39;: Url(&#39;redis://user:pass@localhost:6379/1&#39;),</span>
-<span class="sd">    &#39;pg_dsn&#39;: MultiHostUrl(&#39;postgres://user:pass@localhost:5432/foobar&#39;),</span>
-<span class="sd">    &#39;amqp_dsn&#39;: Url(&#39;amqp://user:pass@localhost:5672/&#39;),</span>
+<span class="sd">    &#39;redis_dsn&#39;: RedisDsn(&#39;redis://user:pass@localhost:6379/1&#39;),</span>
+<span class="sd">    &#39;pg_dsn&#39;: PostgresDsn(&#39;postgres://user:pass@localhost:5432/foobar&#39;),</span>
+<span class="sd">    &#39;amqp_dsn&#39;: AmqpDsn(&#39;amqp://user:pass@localhost:5672/&#39;),</span>
 <span class="sd">    &#39;special_function&#39;: math.cos,</span>
 <span class="sd">    &#39;domains&#39;: set(),</span>
 <span class="sd">    &#39;more_settings&#39;: {&#39;foo&#39;: &#39;bar&#39;, &#39;apple&#39;: 1},</span>
@@ -4210,7 +4257,7 @@ and it would raise a <code>ValidationError</code>.</p>
 <p>You may also populate a complex type by providing your own source class.</p>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic.fields</span><span class="w"> </span><span class="kn">import</span> <span class="n">FieldInfo</span>
 
@@ -4231,17 +4278,17 @@ and it would raise a <code>ValidationError</code>.</p>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
-    <span class="n">numbers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">numbers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">MyCustomSource</span><span class="p">(</span><span class="n">settings_cls</span><span class="p">),)</span>
 
 
@@ -4254,20 +4301,19 @@ and it would raise a <code>ValidationError</code>.</p>
 this behavior for a field and parse the value in your own validator, you can annotate the field with
 <a href="../../api/pydantic_settings/#pydantic_settings.NoDecode"><code>NoDecode</code></a>:</p>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">field_validator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">NoDecode</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
-    <span class="n">numbers</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">NoDecode</span><span class="p">]</span>  <span class="c1"># (1)!</span>
+    <span class="n">numbers</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">NoDecode</span><span class="p">]</span>  <span class="c1"># (1)!</span>
 
     <span class="nd">@field_validator</span><span class="p">(</span><span class="s1">&#39;numbers&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;before&#39;</span><span class="p">)</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">decode_numbers</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode_numbers</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
 
 
@@ -4281,7 +4327,6 @@ this behavior for a field and parse the value in your own validator, you can ann
 </ol>
 <p>You can also disable JSON parsing for all fields by setting the <code>enable_decoding</code> config setting to <code>False</code>:</p>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">field_validator</span>
 
@@ -4291,11 +4336,11 @@ this behavior for a field and parse the value in your own validator, you can ann
 <span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">enable_decoding</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="n">numbers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">numbers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
 
     <span class="nd">@field_validator</span><span class="p">(</span><span class="s1">&#39;numbers&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;before&#39;</span><span class="p">)</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">decode_numbers</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode_numbers</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
 
 
@@ -4306,10 +4351,9 @@ this behavior for a field and parse the value in your own validator, you can ann
 <p>You can force JSON parsing for a field by annotating it with <a href="../../api/pydantic_settings/#pydantic_settings.ForceDecode"><code>ForceDecode</code></a>.
 This will bypass the <code>enable_decoding</code> config setting:</p>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">field_validator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">ForceDecode</span><span class="p">,</span> <span class="n">SettingsConfigDict</span>
 
@@ -4317,12 +4361,12 @@ This will bypass the <code>enable_decoding</code> config setting:</p>
 <span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">enable_decoding</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="n">numbers</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">ForceDecode</span><span class="p">]</span>
-    <span class="n">numbers1</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>  <span class="c1"># (1)!</span>
+    <span class="n">numbers</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">ForceDecode</span><span class="p">]</span>
+    <span class="n">numbers1</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>  <span class="c1"># (1)!</span>
 
     <span class="nd">@field_validator</span><span class="p">(</span><span class="s1">&#39;numbers1&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;before&#39;</span><span class="p">)</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">decode_numbers1</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode_numbers1</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)]</span>
 
 
@@ -4520,7 +4564,6 @@ defined in <code>argparse</code>.</p>
 is customised</a>:</p>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BaseSettings</span><span class="p">,</span>
@@ -4535,12 +4578,12 @@ is customised</a>:</p>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">env_settings</span><span class="p">,</span> <span class="n">CliSettingsSource</span><span class="p">(</span><span class="n">settings_cls</span><span class="p">,</span> <span class="n">cli_parse_args</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
@@ -4559,13 +4602,12 @@ is customised</a>:</p>
 <li>Lazy style <code>--field=1,2</code></li>
 </ul>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">,</span> <span class="n">cli_parse_args</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">my_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">my_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
 
 
 <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.py&#39;</span><span class="p">,</span> <span class="s1">&#39;--my_list&#39;</span><span class="p">,</span> <span class="s1">&#39;[1,2]&#39;</span><span class="p">]</span>
@@ -4591,13 +4633,12 @@ is customised</a>:</p>
 <li><code>--field k1=1,k2=2 --field k3=3 --field '{"k4": 4}'</code> etc.</li>
 </ul>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">,</span> <span class="n">cli_parse_args</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">my_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+    <span class="n">my_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
 
 
 <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.py&#39;</span><span class="p">,</span> <span class="s1">&#39;--my_dict&#39;</span><span class="p">,</span> <span class="s1">&#39;{&quot;k1&quot;:1,&quot;k2&quot;:2}&#39;</span><span class="p">]</span>
@@ -4872,6 +4913,63 @@ defined) after instantiation:</p>
 <li><code>cli_implicit_flags=True</code></li>
 <li><code>cli_kebab_case=True</code></li>
 </ul>
+<h3 id="asynchronous-cli-commands">Asynchronous CLI Commands<a class="headerlink" href="#asynchronous-cli-commands" title="Permanent link">&para;</a></h3>
+<p>Pydantic settings supports running asynchronous CLI commands via <code>CliApp.run</code> and <code>CliApp.run_subcommand</code>. With this feature, you can define async def methods within your Pydantic models (including subcommands) and have them executed just like their synchronous counterparts. Specifically:</p>
+<ol>
+<li>Asynchronous methods are supported: You can now mark your cli_cmd or similar CLI entrypoint methods as async def and have CliApp execute them.</li>
+<li>Subcommands may also be asynchronous: If you have nested CLI subcommands, the final (lowest-level) subcommand methods can likewise be asynchronous.</li>
+<li>Limit asynchronous methods to final subcommands: Defining parent commands as asynchronous is not recommended, because it can result in additional threads and event loops being created. For best performance and to avoid unnecessary resource usage, only implement your deepest (child) subcommands as async def.</li>
+</ol>
+<p>Below is a simple example demonstrating an asynchronous top-level command:</p>
+<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">CliApp</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">AsyncSettings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">cli_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello from an async CLI method!&#39;</span><span class="p">)</span>
+        <span class="c1">#&gt; Hello from an async CLI method!</span>
+
+
+<span class="c1"># If an event loop is already running, a new thread will be used;</span>
+<span class="c1"># otherwise, asyncio.run() is used to execute this async method.</span>
+<span class="k">assert</span> <span class="n">CliApp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">AsyncSettings</span><span class="p">,</span> <span class="n">cli_args</span><span class="o">=</span><span class="p">[])</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="o">==</span> <span class="p">{}</span>
+</code></pre></div>
+<h4 id="asynchronous-subcommands">Asynchronous Subcommands<a class="headerlink" href="#asynchronous-subcommands" title="Permanent link">&para;</a></h4>
+<p>As mentioned above, you can also define subcommands as async. However, only do so for the leaf (lowest-level) subcommand to avoid spawning new threads and event loops unnecessarily in parent commands:</p>
+<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BaseSettings</span><span class="p">,</span>
+    <span class="n">CliApp</span><span class="p">,</span>
+    <span class="n">CliPositionalArg</span><span class="p">,</span>
+    <span class="n">CliSubCommand</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Clone</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">repository</span><span class="p">:</span> <span class="n">CliPositionalArg</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">directory</span><span class="p">:</span> <span class="n">CliPositionalArg</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">cli_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Perform async tasks here, e.g. network or I/O operations</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cloning async from &quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">repository</span><span class="si">}</span><span class="s1">&quot; into &quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">directory</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+        <span class="c1">#&gt; Cloning async from &quot;repo&quot; into &quot;dir&quot;</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Git</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="n">clone</span><span class="p">:</span> <span class="n">CliSubCommand</span><span class="p">[</span><span class="n">Clone</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">cli_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Run the final subcommand (clone/init). It is recommended to define async methods only at the deepest level.</span>
+        <span class="n">CliApp</span><span class="o">.</span><span class="n">run_subcommand</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="n">CliApp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">Git</span><span class="p">,</span> <span class="n">cli_args</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;clone&#39;</span><span class="p">,</span> <span class="s1">&#39;repo&#39;</span><span class="p">,</span> <span class="s1">&#39;dir&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="o">==</span> <span class="p">{</span>
+    <span class="s1">&#39;repository&#39;</span><span class="p">:</span> <span class="s1">&#39;repo&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;directory&#39;</span><span class="p">:</span> <span class="s1">&#39;dir&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>When executing a subcommand with an asynchronous cli_cmd, Pydantic settings automatically detects whether the current thread already has an active event loop. If so, the async command is run in a fresh thread to avoid conflicts. Otherwise, it uses asyncio.run() in the current thread. This handling ensures your asynchronous subcommands “just work” without additional manual setup.</p>
 <h3 id="mutually-exclusive-groups">Mutually Exclusive Groups<a class="headerlink" href="#mutually-exclusive-groups" title="Permanent link">&para;</a></h3>
 <p>CLI mutually exclusive groups can be created by inheriting from the <code>CliMutuallyExclusiveGroup</code> class.</p>
 <div class="admonition note">
@@ -4941,15 +5039,6 @@ default, boolean fields are "explicit", meaning a boolean value must be explicit
 <code>--flag,--no-flag</code>, which removes the need for an explicit value to be passed.</p>
 <p>Additionally, the provided <code>CliImplicitFlag</code> and <code>CliExplicitFlag</code> annotations can be used for more granular control
 when necessary.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For <code>python &lt; 3.9</code> the <code>--no-flag</code> option is not generated due to an underlying <code>argparse</code> limitation.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For <code>python &lt; 3.9</code> the <code>CliImplicitFlag</code> and <code>CliExplicitFlag</code> annotations can only be applied to optional boolean
-fields.</p>
-</div>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">CliExplicitFlag</span><span class="p">,</span> <span class="n">CliImplicitFlag</span>
 
 
@@ -5412,7 +5501,6 @@ as the target mount point. If you want to use a different location, change <code
 <p>In Key Vault, nested models are supported with the <code>--</code> separator. For example, <code>SqlServer--Password</code>.</p>
 <p>Key Vault arrays (e.g. <code>MySecret--0</code>, <code>MySecret--1</code>) are not supported.</p>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity</span><span class="w"> </span><span class="kn">import</span> <span class="n">DefaultAzureCredential</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
@@ -5436,12 +5524,12 @@ as the target mount point. If you want to use a different location, change <code
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="n">az_key_vault_settings</span> <span class="o">=</span> <span class="n">AzureKeyVaultSettingsSource</span><span class="p">(</span>
             <span class="n">settings_cls</span><span class="p">,</span>
             <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AZURE_KEY_VAULT_URL&#39;</span><span class="p">],</span>
@@ -5467,9 +5555,7 @@ as the target mount point. If you want to use a different location, change <code
 <div class="language-py highlight"><pre><span></span><code><span class="n">toml_file</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;config.default.toml&#39;</span><span class="p">,</span> <span class="s1">&#39;config.custom.toml&#39;</span><span class="p">]</span>
 </code></pre></div>
 To use them, you can use the same mechanism described <a href="#customise-settings-sources">here</a></p>
-<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BaseSettings</span><span class="p">,</span>
@@ -5491,12 +5577,12 @@ To use them, you can use the same mechanism described <a href="#customise-settin
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">TomlConfigSettingsSource</span><span class="p">(</span><span class="n">settings_cls</span><span class="p">),)</span>
 </code></pre></div>
 <p>This will be able to read the following "config.toml" file, located in your working directory:</p>
@@ -5510,9 +5596,7 @@ To use them, you can use the same mechanism described <a href="#customise-settin
 While encouraged to use the <code>[tool]</code> table, <code>PyprojectTomlConfigSettingsSource</code> can be used to load variables from any location with in "pyproject.toml" file.</p>
 <p>This is controlled by providing <code>SettingsConfigDict(pyproject_toml_table_header=tuple[str, ...])</code> where the value is a tuple of header parts.
 By default, <code>pyproject_toml_table_header=('tool', 'pydantic-settings')</code> which will load variables from the <code>[tool.pydantic-settings]</code> table.</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BaseSettings</span><span class="p">,</span>
     <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
     <span class="n">PyprojectTomlConfigSettingsSource</span><span class="p">,</span>
@@ -5528,12 +5612,12 @@ By default, <code>pyproject_toml_table_header=('tool', 'pydantic-settings')</cod
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">PyprojectTomlConfigSettingsSource</span><span class="p">(</span><span class="n">settings_cls</span><span class="p">),)</span>
 
 
@@ -5568,7 +5652,6 @@ However, there are two options to change this behavior.</p>
   If a file path is provided this way, it will be treated as absolute (no other locations are checked).</li>
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BaseSettings</span><span class="p">,</span>
@@ -5586,12 +5669,12 @@ However, there are two options to change this behavior.</p>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">PyprojectTomlConfigSettingsSource</span><span class="p">(</span><span class="n">settings_cls</span><span class="p">),)</span>
 
 
@@ -5603,12 +5686,12 @@ However, there are two options to change this behavior.</p>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">PyprojectTomlConfigSettingsSource</span><span class="p">(</span>
                 <span class="n">settings_cls</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;~/.config&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span> <span class="o">/</span> <span class="s1">&#39;pyproject.toml&#39;</span>
@@ -5634,9 +5717,7 @@ In turn these callables are called to build the inputs to the fields of the sett
 <p>Each callable should take an instance of the settings class as its sole argument and return a <code>dict</code>.</p>
 <h3 id="changing-priority">Changing Priority<a class="headerlink" href="#changing-priority" title="Permanent link">&para;</a></h3>
 <p>The order of the returned callables decides the priority of inputs; first item is the highest priority.</p>
-<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostgresDsn</span>
+<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostgresDsn</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">PydanticBaseSettingsSource</span>
 
@@ -5647,17 +5728,17 @@ In turn these callables are called to build the inputs to the fields of the sett
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">env_settings</span><span class="p">,</span> <span class="n">init_settings</span><span class="p">,</span> <span class="n">file_secret_settings</span>
 
 
 <span class="nb">print</span><span class="p">(</span><span class="n">Settings</span><span class="p">(</span><span class="n">database_dsn</span><span class="o">=</span><span class="s1">&#39;postgres://postgres@localhost:5432/kwargs_db&#39;</span><span class="p">))</span>
-<span class="c1">#&gt; database_dsn=MultiHostUrl(&#39;postgres://postgres@localhost:5432/kwargs_db&#39;)</span>
+<span class="c1">#&gt; database_dsn=PostgresDsn(&#39;postgres://postgres@localhost:5432/kwargs_db&#39;)</span>
 </code></pre></div>
 <p>By flipping <code>env_settings</code> and <code>init_settings</code>, environment variables now have precedence over <code>__init__</code> kwargs.</p>
 <h3 id="adding-sources">Adding sources<a class="headerlink" href="#adding-sources" title="Permanent link">&para;</a></h3>
@@ -5665,7 +5746,7 @@ In turn these callables are called to build the inputs to the fields of the sett
 need to add your own custom sources, <code>settings_customise_sources</code> makes this very easy:</p>
 <div class="language-py highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic.fields</span><span class="w"> </span><span class="kn">import</span> <span class="n">FieldInfo</span>
 
@@ -5687,7 +5768,7 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_field_value</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">:</span> <span class="n">FieldInfo</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
         <span class="n">encoding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;env_file_encoding&#39;</span><span class="p">)</span>
         <span class="n">file_content_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span>
             <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;tests/example_test_config.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
@@ -5700,8 +5781,8 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">value</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="n">d</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">d</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">for</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings_cls</span><span class="o">.</span><span class="n">model_fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">field_value</span><span class="p">,</span> <span class="n">field_key</span><span class="p">,</span> <span class="n">value_is_complex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_field_value</span><span class="p">(</span>
@@ -5724,12 +5805,12 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">init_settings</span><span class="p">,</span>
             <span class="n">JsonConfigSettingsSource</span><span class="p">(</span><span class="n">settings_cls</span><span class="p">),</span>
@@ -5743,7 +5824,7 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
 </code></pre></div>
 <h4 id="accesing-the-result-of-previous-sources">Accesing the result of previous sources<a class="headerlink" href="#accesing-the-result-of-previous-sources" title="Permanent link">&para;</a></h4>
 <p>Each source of settings can access the output of the previous ones.</p>
-<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
+<div class="language-python highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic.fields</span><span class="w"> </span><span class="kn">import</span> <span class="n">FieldInfo</span>
 
@@ -5753,15 +5834,15 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
 <span class="k">class</span><span class="w"> </span><span class="nc">MyCustomSource</span><span class="p">(</span><span class="n">PydanticBaseSettingsSource</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_field_value</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">:</span> <span class="n">FieldInfo</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span> <span class="o">...</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span> <span class="o">...</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="c1"># Retrieve the aggregated settings from previous sources</span>
         <span class="n">current_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span>
         <span class="n">current_state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;some_setting&#39;</span><span class="p">)</span>
 
         <span class="c1"># Retrive settings from all sources individually</span>
-        <span class="c1"># self.settings_sources_data[&quot;SettingsSourceName&quot;]: Dict[str, Any]</span>
+        <span class="c1"># self.settings_sources_data[&quot;SettingsSourceName&quot;]: dict[str, Any]</span>
         <span class="n">settings_sources_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings_sources_data</span>
         <span class="n">settings_sources_data</span><span class="p">[</span><span class="s1">&#39;SomeSettingsSource&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;some_setting&#39;</span><span class="p">)</span>
 
@@ -5769,9 +5850,7 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
 </code></pre></div>
 <h3 id="removing-sources">Removing sources<a class="headerlink" href="#removing-sources" title="Permanent link">&para;</a></h3>
 <p>You might also want to disable a source:</p>
-<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
+<div class="language-py highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">PydanticBaseSettingsSource</span>
 
@@ -5782,12 +5861,12 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">settings_customise_sources</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">settings_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
+        <span class="n">settings_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseSettings</span><span class="p">],</span>
         <span class="n">init_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">env_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">dotenv_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
         <span class="n">file_secret_settings</span><span class="p">:</span> <span class="n">PydanticBaseSettingsSource</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">PydanticBaseSettingsSource</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="c1"># here we choose to ignore arguments from init_settings</span>
         <span class="k">return</span> <span class="n">env_settings</span><span class="p">,</span> <span class="n">file_secret_settings</span>
 
@@ -5894,7 +5973,7 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
                 
   <script src="/flarelytics/client.js"></script>
       <script>
-    window.mkdocs_run_deps = ["pydantic==2.11.0a2", "pydantic-core==2.29.0", "pydantic-extra-types==2.10.0"]
+    window.mkdocs_run_deps = ["pydantic==2.11.0b1", "pydantic-core==2.31.1", "pydantic-extra-types==2.10.0"]
     </script>
 
               </article>
@@ -5944,6 +6023,12 @@ need to add your own custom sources, <code>settings_customise_sources</code> mak
     
     
       <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/algoliasearch@5.20.0/dist/lite/builds/browser.umd.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.77.3/dist/instantsearch.production.min.js"></script>
+      
+        <script src="../../extra/algolia.js"></script>
       
         <script src="../../extra/feedback.js"></script>
       

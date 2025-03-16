@@ -220,35 +220,33 @@ to help you monitor and understand your
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" id="searchbox" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" required="">
       <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+
+        <button id="searchbox-clear" type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
         </button>
       </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
+
+        <div class="md-search__suggest"></div>
+
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
+      <div class="md-search__scrollwrap" tabindex="0">
+        <div class="md-search-result">
+          <div class="md-search-result__meta" id="type-to-start-searching">Type to start searching</div>
+          <ol class="md-search-result__list" id="hits" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -3096,15 +3094,6 @@ Here, we celebrate those people and their contributions.</p>
     </div>
 
     <div class="user">
-        <a href="https://github.com/dmontagu" target="_blank">
-            <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/35119617?u=540f30c937a6450812628b9592a1dfe91bbe148e&v=4"/>
-            </div>
-            <div class="title">@dmontagu</div>
-        </a>
-    </div>
-
-    <div class="user">
         <a href="https://github.com/adriangb" target="_blank">
             <div class="avatar-wrapper">
                 <img src="https://avatars.githubusercontent.com/u/1755071?u=612704256e38d6ac9cbed24f10e4b6ac2da74ecb&v=4"/>
@@ -3123,20 +3112,29 @@ Here, we celebrate those people and their contributions.</p>
     </div>
 
     <div class="user">
+        <a href="https://github.com/dmontagu" target="_blank">
+            <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/35119617?u=540f30c937a6450812628b9592a1dfe91bbe148e&v=4"/>
+            </div>
+            <div class="title">@dmontagu</div>
+        </a>
+    </div>
+
+    <div class="user">
+        <a href="https://github.com/davidhewitt" target="_blank">
+            <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/1939362?u=b4b48981c3a097daaad16c4c5417aa7a3e5e32d9&v=4"/>
+            </div>
+            <div class="title">@davidhewitt</div>
+        </a>
+    </div>
+
+    <div class="user">
         <a href="https://github.com/Kludex" target="_blank">
             <div class="avatar-wrapper">
                 <img src="https://avatars.githubusercontent.com/u/7353520?u=df8a3f06ba8f55ae1967a3e2d5ed882903a4e330&v=4"/>
             </div>
             <div class="title">@Kludex</div>
-        </a>
-    </div>
-
-    <div class="user">
-        <a href="https://github.com/samuelcolvin" target="_blank">
-            <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/4039449?u=42eb3b833047c8c4b4f647a031eaef148c16d93f&v=4"/>
-            </div>
-            <div class="title">@samuelcolvin</div>
         </a>
     </div>
 
@@ -3150,20 +3148,20 @@ Here, we celebrate those people and their contributions.</p>
     </div>
 
     <div class="user">
+        <a href="https://github.com/samuelcolvin" target="_blank">
+            <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/4039449?u=42eb3b833047c8c4b4f647a031eaef148c16d93f&v=4"/>
+            </div>
+            <div class="title">@samuelcolvin</div>
+        </a>
+    </div>
+
+    <div class="user">
         <a href="https://github.com/alexmojaki" target="_blank">
             <div class="avatar-wrapper">
                 <img src="https://avatars.githubusercontent.com/u/3627481?u=9bb2e0cf1c5ef3d0609d2e639a135b7b4ca8b463&v=4"/>
             </div>
             <div class="title">@alexmojaki</div>
-        </a>
-    </div>
-
-    <div class="user">
-        <a href="https://github.com/davidhewitt" target="_blank">
-            <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/1939362?u=b4b48981c3a097daaad16c4c5417aa7a3e5e32d9&v=4"/>
-            </div>
-            <div class="title">@davidhewitt</div>
         </a>
     </div>
 
@@ -3176,7 +3174,7 @@ Here, we celebrate those people and their contributions.</p>
     <div class="user">
         <a href="https://github.com/PrettyWood" target="_blank">
             <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/18406791?u=20a4953f7d7e9d49d054b81e1582b08e87b2125f&v=4"/>
+                <img src="https://avatars.githubusercontent.com/u/18406791?u=4853940cf5eeffb5bbb9ba06ad862f28bc68d69e&v=4"/>
             </div>
             <div class="title">@PrettyWood</div>
         </a>
@@ -3190,7 +3188,7 @@ Here, we celebrate those people and their contributions.</p>
             </div>
             <div class="title">@uriyyo</div>
         </a>
-        <div class="count">Questions replied: 95</div>
+        <div class="count">Questions replied: 96</div>
     </div>
 
     <div class="user">
@@ -3239,16 +3237,6 @@ Here, we celebrate those people and their contributions.</p>
 <p>These are the users that have helped others the most with questions in GitHub during the last month.</p>
 <div class="user-list user-list-center">
 
-    <div class="user">
-        <a href="https://github.com/janas-adam" target="_blank">
-            <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/48211033?u=e9c1dd6ff60473e8f35179fd91be02ea8af569ef&v=4"/>
-            </div>
-            <div class="title">@janas-adam</div>
-        </a>
-        <div class="count">Questions replied: 6</div>
-    </div>
-
 </div>
 
 <h2 id="top-contributors">Top contributors<a class="headerlink" href="#top-contributors" title="Permanent link">&para;</a></h2>
@@ -3258,7 +3246,7 @@ Here, we celebrate those people and their contributions.</p>
     <div class="user">
         <a href="https://github.com/PrettyWood" target="_blank">
             <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/18406791?u=20a4953f7d7e9d49d054b81e1582b08e87b2125f&v=4"/>
+                <img src="https://avatars.githubusercontent.com/u/18406791?u=4853940cf5eeffb5bbb9ba06ad862f28bc68d69e&v=4"/>
             </div>
             <div class="title">@PrettyWood</div>
         </a>
@@ -3336,6 +3324,16 @@ Here, we celebrate those people and their contributions.</p>
     </div>
 
     <div class="user">
+        <a href="https://github.com/misrasaurabh1" target="_blank">
+            <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/1271289?u=b83b0a82b2c95990d93cefbeb8f548d9f2f090c2&v=4"/>
+            </div>
+            <div class="title">@misrasaurabh1</div>
+        </a>
+        <div class="count">Contributions: 16</div>
+    </div>
+
+    <div class="user">
         <a href="https://github.com/uriyyo" target="_blank">
             <div class="avatar-wrapper">
                 <img src="https://avatars.githubusercontent.com/u/32038156?u=a27b65a9ec3420586a827a0facccbb8b6df1ffb3&v=4"/>
@@ -3361,16 +3359,6 @@ Here, we celebrate those people and their contributions.</p>
                 <img src="https://avatars.githubusercontent.com/u/52716203?u=d7062cbc6eb7671d5dc9cc0e32a24ae335e0f225&v=4"/>
             </div>
             <div class="title">@yezz123</div>
-        </a>
-        <div class="count">Contributions: 12</div>
-    </div>
-
-    <div class="user">
-        <a href="https://github.com/misrasaurabh1" target="_blank">
-            <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/1271289?u=b83b0a82b2c95990d93cefbeb8f548d9f2f090c2&v=4"/>
-            </div>
-            <div class="title">@misrasaurabh1</div>
         </a>
         <div class="count">Contributions: 12</div>
     </div>
@@ -3418,7 +3406,7 @@ Here, we celebrate those people and their contributions.</p>
     <div class="user">
         <a href="https://github.com/aminalaee" target="_blank">
             <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/19784933?u=2f45a312b73e7fb29f3b6f8676e5be6f7220da25&v=4"/>
+                <img src="https://avatars.githubusercontent.com/u/19784933?v=4"/>
             </div>
             <div class="title">@aminalaee</div>
         </a>
@@ -3456,6 +3444,16 @@ Here, we celebrate those people and their contributions.</p>
     </div>
 
     <div class="user">
+        <a href="https://github.com/tlambert03" target="_blank">
+            <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/1609449?u=922abf0524b47739b37095e553c99488814b05db&v=4"/>
+            </div>
+            <div class="title">@tlambert03</div>
+        </a>
+        <div class="count">Contributions: 7</div>
+    </div>
+
+    <div class="user">
         <a href="https://github.com/dgasmith" target="_blank">
             <div class="avatar-wrapper">
                 <img src="https://avatars.githubusercontent.com/u/1769841?u=44e83d7974f0ab5c431340f1669d98f781594980&v=4"/>
@@ -3471,16 +3469,6 @@ Here, we celebrate those people and their contributions.</p>
                 <img src="https://avatars.githubusercontent.com/u/202696?v=4"/>
             </div>
             <div class="title">@Atheuz</div>
-        </a>
-        <div class="count">Contributions: 6</div>
-    </div>
-
-    <div class="user">
-        <a href="https://github.com/tlambert03" target="_blank">
-            <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/1609449?u=922abf0524b47739b37095e553c99488814b05db&v=4"/>
-            </div>
-            <div class="title">@tlambert03</div>
         </a>
         <div class="count">Contributions: 6</div>
     </div>
@@ -3566,6 +3554,16 @@ Here, we celebrate those people and their contributions.</p>
     </div>
 
     <div class="user">
+        <a href="https://github.com/MarkusSintonen" target="_blank">
+            <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/12939780?v=4"/>
+            </div>
+            <div class="title">@MarkusSintonen</div>
+        </a>
+        <div class="count">Contributions: 4</div>
+    </div>
+
+    <div class="user">
         <a href="https://github.com/JensHeinrich" target="_blank">
             <div class="avatar-wrapper">
                 <img src="https://avatars.githubusercontent.com/u/59469646?u=86d6a20768cc4cc65622eafd86672147321bd8f8&v=4"/>
@@ -3615,6 +3613,16 @@ Here, we celebrate those people and their contributions.</p>
         <div class="count">Contributions: 4</div>
     </div>
 
+    <div class="user">
+        <a href="https://github.com/mschoettle" target="_blank">
+            <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/u/9328433?u=8546519cb04223cd878285d72c27850b5f3f0882&v=4"/>
+            </div>
+            <div class="title">@mschoettle</div>
+        </a>
+        <div class="count">Contributions: 4</div>
+    </div>
+
 </div>
 
 <h2 id="top-reviewers">Top Reviewers<a class="headerlink" href="#top-reviewers" title="Permanent link">&para;</a></h2>
@@ -3624,7 +3632,7 @@ Here, we celebrate those people and their contributions.</p>
     <div class="user">
         <a href="https://github.com/PrettyWood" target="_blank">
             <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/18406791?u=20a4953f7d7e9d49d054b81e1582b08e87b2125f&v=4"/>
+                <img src="https://avatars.githubusercontent.com/u/18406791?u=4853940cf5eeffb5bbb9ba06ad862f28bc68d69e&v=4"/>
             </div>
             <div class="title">@PrettyWood</div>
         </a>
@@ -3652,6 +3660,16 @@ Here, we celebrate those people and their contributions.</p>
     </div>
 
     <div class="user">
+        <a href="https://github.com/apps/hyperlint-ai" target="_blank">
+            <div class="avatar-wrapper">
+                <img src="https://avatars.githubusercontent.com/in/718456?v=4"/>
+            </div>
+            <div class="title">@hyperlint-ai</div>
+        </a>
+        <div class="count">Reviews: 56</div>
+    </div>
+
+    <div class="user">
         <a href="https://github.com/tiangolo" target="_blank">
             <div class="avatar-wrapper">
                 <img src="https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4"/>
@@ -3659,16 +3677,6 @@ Here, we celebrate those people and their contributions.</p>
             <div class="title">@tiangolo</div>
         </a>
         <div class="count">Reviews: 44</div>
-    </div>
-
-    <div class="user">
-        <a href="https://github.com/apps/hyperlint-ai" target="_blank">
-            <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/in/718456?v=4"/>
-            </div>
-            <div class="title">@hyperlint-ai</div>
-        </a>
-        <div class="count">Reviews: 41</div>
     </div>
 
     <div class="user">
@@ -3708,7 +3716,7 @@ Here, we celebrate those people and their contributions.</p>
             </div>
             <div class="title">@MarkusSintonen</div>
         </a>
-        <div class="count">Reviews: 15</div>
+        <div class="count">Reviews: 16</div>
     </div>
 
     <div class="user">
@@ -3854,7 +3862,7 @@ Here, we celebrate those people and their contributions.</p>
     <div class="user">
         <a href="https://github.com/graingert" target="_blank">
             <div class="avatar-wrapper">
-                <img src="https://avatars.githubusercontent.com/u/413772?u=64b77b6aa405c68a9c6bcf45f84257c66eea5f32&v=4"/>
+                <img src="https://avatars.githubusercontent.com/u/413772?v=4"/>
             </div>
             <div class="title">@graingert</div>
         </a>
@@ -3988,7 +3996,7 @@ Many thanks to <a href="https://github.com/tiangolo">Sebastián Ramírez</a> for
                 
   <script src="/flarelytics/client.js"></script>
       <script>
-    window.mkdocs_run_deps = ["pydantic==2.11.0a2", "pydantic-core==2.29.0", "pydantic-extra-types==2.10.0"]
+    window.mkdocs_run_deps = ["pydantic==2.11.0b1", "pydantic-core==2.31.1", "pydantic-extra-types==2.10.0"]
     </script>
 
               </article>
@@ -4038,6 +4046,12 @@ Many thanks to <a href="https://github.com/tiangolo">Sebastián Ramírez</a> for
     
     
       <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/algoliasearch@5.20.0/dist/lite/builds/browser.umd.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.77.3/dist/instantsearch.production.min.js"></script>
+      
+        <script src="../extra/algolia.js"></script>
       
         <script src="../extra/feedback.js"></script>
       
